@@ -177,17 +177,17 @@
   .dl-item .title { font-size: 0.88rem; font-weight: 700; }
   .dl-item .btns { display: flex; gap: 6px; flex-shrink: 0; }
 
-  #frame {
+  #frame, #pdf-cap-frame {
     position: fixed;
-    left: 0;
+    left: -10000px;
     top: 0;
     width: 794px;
     height: 1123px;
     border: none;
-    opacity: 0;
+    visibility: hidden;
     pointer-events: none;
-    z-index: -1;
   }
+  body.pdf-busy { overflow: hidden; }
 </style>
 </head>
 <body>
@@ -489,6 +489,7 @@
 
   function setDlBusy(v) {
     dlBusy = v;
+    document.body.classList.toggle("pdf-busy", v);
     btnMerge.disabled = v;
     btnAll.disabled = v;
     document.querySelectorAll("[data-dl]").forEach(b => b.disabled = v);
@@ -528,6 +529,27 @@
     await wait(400);
   }
 
+  function getCaptureFrame() {
+    let capFrame = document.getElementById("pdf-cap-frame");
+    if (!capFrame) {
+      capFrame = document.createElement("iframe");
+      capFrame.id = "pdf-cap-frame";
+      capFrame.setAttribute("aria-hidden", "true");
+      capFrame.title = "PDF capture";
+      document.body.appendChild(capFrame);
+    }
+    return capFrame;
+  }
+
+  async function waitForCaptureReady(doc) {
+    if (doc.fonts && doc.fonts.ready) await doc.fonts.ready;
+    await Promise.all([...doc.images].map(img =>
+      img.complete ? Promise.resolve() :
+      new Promise(r => { img.onload = img.onerror = r; })
+    ));
+    await wait(500);
+  }
+
   async function capturePageCanvas(page) {
     setStatus(`Render hal ${page.num}/10: ${page.title}…`, true);
     const doc = await loadPage(page.file);
@@ -535,47 +557,32 @@
     const el = doc.querySelector(".page");
     if (!el) throw new Error("Elemen .page tidak ditemukan di " + page.file);
 
-    let holder = document.getElementById("pdf-capture-holder");
-    if (!holder) {
-      holder = document.createElement("div");
-      holder.id = "pdf-capture-holder";
-      holder.style.cssText = "position:fixed;left:0;top:0;z-index:9999;opacity:0.01;pointer-events:none;overflow:hidden;";
-      document.body.appendChild(holder);
-    }
-    holder.innerHTML = "";
+    const capFrame = getCaptureFrame();
+    const cdoc = capFrame.contentDocument;
+    const headHtml = [...doc.querySelectorAll('link[rel="stylesheet"], style')]
+      .map(node => node.outerHTML)
+      .join("\n");
 
-    doc.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
-      holder.appendChild(link.cloneNode(true));
-    });
-    doc.querySelectorAll("style").forEach(style => {
-      holder.appendChild(style.cloneNode(true));
-    });
+    cdoc.open();
+    cdoc.write(`<!DOCTYPE html><html lang="id"><head><meta charset="utf-8">${headHtml}</head><body style="margin:0;padding:0;background:#fff;">${el.outerHTML}</body></html>`);
+    cdoc.close();
 
-    const clone = el.cloneNode(true);
-    clone.style.width = "794px";
-    clone.style.height = "1123px";
-    holder.appendChild(clone);
+    await waitForCaptureReady(cdoc);
 
-    const origImgs = el.querySelectorAll("img");
-    clone.querySelectorAll("img").forEach((img, i) => {
-      if (origImgs[i]) img.src = origImgs[i].src;
-    });
+    const capEl = cdoc.querySelector(".page");
+    if (!capEl) throw new Error("Capture .page tidak ditemukan");
 
-    await document.fonts.ready;
-    await wait(800);
-
-    const canvas = await html2canvas(clone, {
+    return html2canvas(capEl, {
       scale: 2,
       useCORS: true,
       allowTaint: false,
       logging: false,
       backgroundColor: "#ffffff",
       width: 794,
-      height: 1123
+      height: 1123,
+      scrollX: 0,
+      scrollY: 0
     });
-
-    holder.innerHTML = "";
-    return canvas;
   }
 
   function canvasToPdfBlob(canvas) {
