@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Halaman 07 - Timeline Kegiatan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #111;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    background: #fff;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  .bar-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 13mm;
+    background: #C8102E;
+    display: flex;
+    align-items: center;
+    padding: 0 10mm;
+    z-index: 2;
+  }
+  .bar-top span {
+    font-size: 3.4mm;
+    font-weight: 700;
+    letter-spacing: 0.4mm;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .content {
+    position: absolute;
+    top: 13mm;
+    bottom: 0;
+    left: 0; right: 0;
+    padding: 4mm 10mm 6mm 8mm;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .page-head h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 7mm;
+    font-weight: 800;
+    color: #111;
+    padding-left: 4mm;
+    border-left: 1.5mm solid #C8102E;
+    line-height: 1.1;
+    margin-bottom: 1mm;
+  }
+  .page-head .sub {
+    font-size: 3.5mm;
+    font-weight: 500;
+    font-style: italic;
+    color: #666;
+    padding-left: 5.5mm;
+    margin-bottom: 4mm;
+  }
+
+  /* ── Timeline ── */
+  .timeline {
+    flex: 1;
+    position: relative;
+    padding-left: 10mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .timeline::before {
+    content: '';
+    position: absolute;
+    left: 3.2mm;
+    top: 2mm;
+    bottom: 2mm;
+    width: 0.5mm;
+    background: #C8102E;
+  }
+
+  .tl-item {
+    position: relative;
+    padding-left: 6mm;
+    padding-bottom: 0;
+  }
+
+  .tl-item::before {
+    content: '';
+    position: absolute;
+    left: -6.8mm;
+    top: 1.2mm;
+    width: 3.5mm;
+    height: 3.5mm;
+    border-radius: 50%;
+    background: #C8102E;
+    border: 0.6mm solid #fff;
+    box-shadow: 0 0 0 0.3mm #C8102E;
+    z-index: 1;
+  }
+
+  .tl-item.highlight::before {
+    width: 5.5mm;
+    height: 5.5mm;
+    left: -7.8mm;
+    top: 0.5mm;
+    background: #C8102E;
+    box-shadow: 0 0 0 0.4mm #C8102E;
+  }
+  .tl-item.highlight::after {
+    content: '★';
+    position: absolute;
+    left: -6.5mm;
+    top: 1.5mm;
+    font-size: 3mm;
+    color: #fff;
+    z-index: 2;
+    line-height: 1;
+  }
+
+  .tl-head {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 2mm;
+    margin-bottom: 0.8mm;
+    line-height: 1.25;
+  }
+  .tl-date {
+    font-size: 3.2mm;
+    font-weight: 800;
+    color: #C8102E;
+    white-space: nowrap;
+  }
+  .tl-title {
+    font-size: 3.4mm;
+    font-weight: 800;
+    color: #111;
+  }
+  .tl-item.highlight .tl-title {
+    color: #C8102E;
+    text-transform: uppercase;
+    letter-spacing: 0.2mm;
+    font-size: 3.6mm;
+  }
+
+  .tl-desc {
+    font-size: 3.1mm;
+    line-height: 1.4;
+    color: #444;
+    text-align: justify;
+    padding-right: 2mm;
+  }
+
+  @media screen {
+    body {
+      margin: 8mm auto;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  @media print {
+    html, body { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="bar-top">
+    <span>Halaman 07 &bull; Timeline Kegiatan</span>
+  </div>
+
+  <div class="content">
+
+    <div class="page-head">
+      <h1>Timeline Kegiatan</h1>
+      <div class="sub">Dari persiapan awal (13 Juli) hingga malam puncak (5 September 2026)</div>
+    </div>
+
+    <div class="timeline">
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-date">13 Juli 2026</span>
+          <span class="tl-title">Pembentukan Kepanitiaan</span>
+        </div>
+        <div class="tl-desc">Musyawarah warga, penyusunan struktur kepanitiaan, dan pengesahan proposal awal oleh Ketua RW.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-date">14 &ndash; 20 Juli 2026</span>
+          <span class="tl-title">Sosialisasi &amp; Penyebaran Proposal</span>
+        </div>
+        <div class="tl-desc" data-cfg-tpl="templates.timelineSosialisasi">Sosialisasi ke seluruh warga RW 16 dan penyebaran proposal ke mitra sponsor termasuk PT Panfila Indosari.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-date">21 &ndash; 31 Juli 2026</span>
+          <span class="tl-title">Persiapan Teknis &amp; Perlengkapan</span>
+        </div>
+        <div class="tl-desc">Pengadaan perlengkapan lomba, pemasangan umbul-umbul, koordinasi dengan seluruh mitra dan sponsor.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-date">3 Agustus 2026</span>
+          <span class="tl-title">Jalan Santai Sehat Bersama</span>
+        </div>
+        <div class="tl-desc">Pembukaan resmi rangkaian PHBN &mdash; jalan santai, senam sehat, doorprize, dan ramah tamah bersama seluruh warga.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-date">4 &ndash; 14 Agustus 2026</span>
+          <span class="tl-title">Pendaftaran Peserta Lomba</span>
+        </div>
+        <div class="tl-desc">Pendaftaran anak-anak peserta lomba 17-an oleh setiap RT, dan finalisasi teknis lapangan.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-date">15 &ndash; 16 Agustus 2026</span>
+          <span class="tl-title">Pelaksanaan Lomba Anak (Hari 1&ndash;2)</span>
+        </div>
+        <div class="tl-desc">Berbagai cabang lomba tradisional anak-anak: balap karung, makan kerupuk, kelereng, joget balon, dan lain-lain.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-date">17 Agustus 2026</span>
+          <span class="tl-title">Puncak Lomba &amp; Upacara Bendera</span>
+        </div>
+        <div class="tl-desc">Upacara pengibaran bendera, lomba final, dan tarik tambang antar-RT sebagai puncak lomba seru.</div>
+      </div>
+
+      <div class="tl-item">
+        <div class="tl-head">
+          <span class="tl-date">18 Agu &ndash; 4 Sep 2026</span>
+          <span class="tl-title">Persiapan Malam Apresiasi Seni</span>
+        </div>
+        <div class="tl-desc">Latihan penampilan seni warga, gladi bersih, pemasangan panggung, dekorasi, dan cetak backdrop sponsor.</div>
+      </div>
+
+      <div class="tl-item highlight">
+        <div class="tl-head">
+          <span class="tl-date">5 September 2026</span>
+          <span class="tl-title">Malam Puncak Apresiasi Seni</span>
+        </div>
+        <div class="tl-desc">Malam puncak &mdash; persembahan seni warga, pengumuman &amp; pembagian hadiah, penghargaan sponsor, dan ramah tamah.</div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<script src="config.js"></script>
+<script src="apply-config.js"></script>
+</body>
+</html>

@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Halaman 05 - Rangkaian Kegiatan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #111;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    background: #fff;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  .bar-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 13mm;
+    background: #C8102E;
+    display: flex;
+    align-items: center;
+    padding: 0 10mm;
+    z-index: 2;
+  }
+  .bar-top span {
+    font-size: 3.4mm;
+    font-weight: 700;
+    letter-spacing: 0.4mm;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .content {
+    position: absolute;
+    top: 13mm;
+    bottom: 0;
+    left: 0; right: 0;
+    padding: 5mm 10mm 8mm;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5mm;
+  }
+
+  /* ── Page header ── */
+  .page-head h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 7mm;
+    font-weight: 800;
+    color: #111;
+    padding-left: 4mm;
+    border-left: 1.5mm solid #C8102E;
+    line-height: 1.1;
+    margin-bottom: 1.5mm;
+  }
+  .page-head .sub {
+    font-size: 3.8mm;
+    font-weight: 500;
+    color: #555;
+    padding-left: 5.5mm;
+  }
+
+  /* ── Activity cards ── */
+  .cards {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3.5mm;
+    min-height: 0;
+  }
+
+  .card {
+    flex: 1;
+    display: flex;
+    border: 0.5mm solid #C8102E;
+    overflow: hidden;
+    min-height: 0;
+  }
+
+  .card-side {
+    width: 28mm;
+    flex-shrink: 0;
+    background: #C8102E;
+    color: #fff;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 3mm 2mm;
+    text-align: center;
+  }
+  .card-side .label {
+    font-size: 2.6mm;
+    font-weight: 700;
+    letter-spacing: 0.3mm;
+    text-transform: uppercase;
+  }
+  .card-side .num {
+    font-family: 'Playfair Display', serif;
+    font-size: 16mm;
+    font-weight: 800;
+    line-height: 1;
+  }
+  .card-side .tags {
+    font-size: 2.2mm;
+    font-weight: 600;
+    letter-spacing: 0.2mm;
+    text-transform: uppercase;
+    line-height: 1.4;
+  }
+
+  .card-body {
+    flex: 1;
+    padding: 3.5mm 5mm;
+    display: flex;
+    flex-direction: column;
+    min-width: 0;
+  }
+  .card-body h3 {
+    font-family: 'Playfair Display', serif;
+    font-size: 5.5mm;
+    font-weight: 800;
+    color: #C8102E;
+    line-height: 1.15;
+    margin-bottom: 1mm;
+  }
+  .card-body .date {
+    font-size: 3.4mm;
+    font-weight: 600;
+    font-style: italic;
+    color: #555;
+    margin-bottom: 2mm;
+  }
+  .card-body p {
+    font-size: 3.5mm;
+    line-height: 1.5;
+    text-align: justify;
+    flex: 1;
+  }
+  .card-body .meta {
+    font-size: 3.2mm;
+    line-height: 1.45;
+    margin-top: 2mm;
+    padding-top: 2mm;
+    border-top: 0.2mm solid #e0e0e0;
+  }
+  .card-body .meta strong {
+    color: #C8102E;
+    font-weight: 700;
+  }
+
+  @media screen {
+    body {
+      margin: 8mm auto;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  @media print {
+    html, body { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="bar-top">
+    <span>Halaman 05 &bull; Rangkaian Kegiatan</span>
+  </div>
+
+  <div class="content">
+
+    <div class="page-head">
+      <h1>Rangkaian Kegiatan</h1>
+      <div class="sub">Tiga pilar utama kegiatan PHBN RW 16 tahun 2026</div>
+    </div>
+
+    <div class="cards">
+
+      <div class="card">
+        <div class="card-side">
+          <div class="label">Kegiatan 01</div>
+          <div class="num">01</div>
+          <div class="tags">Sehat &bull; Ceria &bull; Keluarga</div>
+        </div>
+        <div class="card-body">
+          <h3>Jalan Santai Sehat Bersama</h3>
+          <div class="date">Pembuka rangkaian kegiatan &mdash; Minggu, 3 Agustus 2026</div>
+          <p>Kegiatan pembuka rangkaian peringatan Hari Besar Nasional yang diikuti seluruh warga RW 16 lintas generasi. Jalan santai sejauh ±2 km melintasi lingkungan RW dengan tujuan mempererat tali persaudaraan sekaligus mendorong gaya hidup sehat. Acara dimeriahkan dengan doorprize, senam pagi, dan ramah tamah bersama.</p>
+          <div class="meta"><strong>Peserta:</strong> Seluruh warga RW 16 &nbsp;&nbsp; <strong>Lokasi:</strong> Start dan Finish Lapangan RW 16</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-side">
+          <div class="label">Kegiatan 02</div>
+          <div class="num">02</div>
+          <div class="tags">Ceria &bull; Kompak &bull; Anak-anak</div>
+        </div>
+        <div class="card-body">
+          <h3>Lomba Anak 17-an</h3>
+          <div class="date">Kompetisi tradisional khas Agustusan &mdash; 10, 16 &amp; 17 Agustus 2026</div>
+          <p>Rangkaian lomba tradisional 17-an untuk anak-anak RW 16 usia 4&ndash;15 tahun, meliputi <strong>balap karung, makan kerupuk, kelereng, memasukkan pensil ke botol, tarik tambang, joget balon,</strong> dan <strong>estafet air</strong>. Setiap peserta mendapat sertifikat partisipasi, pemenang masing-masing lomba mendapat piala dan hadiah menarik.</p>
+          <div class="meta"><strong>Peserta:</strong> Anak-anak RW 16 (usia 4&ndash;15 tahun) &nbsp;&nbsp; <strong>Lokasi:</strong> Lapangan &amp; halaman RW 16</div>
+        </div>
+      </div>
+
+      <div class="card">
+        <div class="card-side">
+          <div class="label">Kegiatan 03</div>
+          <div class="num">03</div>
+          <div class="tags">Apresiasi &bull; Seni &bull; Malam Puncak</div>
+        </div>
+        <div class="card-body">
+          <h3>Malam Apresiasi Seni</h3>
+          <div class="date">Puncak rangkaian kegiatan &mdash; Sabtu, 5 September 2026</div>
+          <p>Malam puncak penutup rangkaian kegiatan HUT RI ke-81 berupa pentas seni budaya warga. Rangkaian acara meliputi <strong>sambutan Ketua RW, penampilan seni anak-anak, tari tradisional, musik akustik warga, pengumuman &amp; pembagian hadiah lomba,</strong> serta <strong>ramah tamah bersama warga dan mitra sponsor</strong>.</p>
+          <div class="meta"><strong>Peserta:</strong> Seluruh warga RW 16 &amp; tamu undangan &nbsp;&nbsp; <strong>Lokasi:</strong> Panggung Utama RW 16</div>
+        </div>
+      </div>
+
+    </div>
+
+  </div>
+
+</div>
+<script src="config.js"></script>
+<script src="apply-config.js"></script>
+</body>
+</html>

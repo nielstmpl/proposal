@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Halaman 06 - Rincian Anggaran</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #111;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    background: #fff;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  .bar-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 13mm;
+    background: #C8102E;
+    display: flex;
+    align-items: center;
+    padding: 0 10mm;
+    z-index: 2;
+  }
+  .bar-top span {
+    font-size: 3.4mm;
+    font-weight: 700;
+    letter-spacing: 0.4mm;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .content {
+    position: absolute;
+    top: 13mm;
+    bottom: 0;
+    left: 0; right: 0;
+    padding: 4mm 8mm 6mm;
+    display: flex;
+    flex-direction: column;
+    gap: 2.5mm;
+  }
+
+  .page-head h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 7mm;
+    font-weight: 800;
+    color: #111;
+    padding-left: 4mm;
+    border-left: 1.5mm solid #C8102E;
+    line-height: 1.1;
+    margin-bottom: 1mm;
+  }
+  .page-head .sub {
+    font-size: 3.5mm;
+    font-weight: 500;
+    font-style: italic;
+    color: #666;
+    padding-left: 5.5mm;
+  }
+
+  .table-wrap {
+    flex: 1;
+    min-height: 0;
+    overflow: hidden;
+  }
+
+  table {
+    width: 100%;
+    border-collapse: collapse;
+    table-layout: fixed;
+    font-size: 3.2mm;
+    line-height: 1.35;
+  }
+
+  thead th {
+    background: #C8102E;
+    color: #fff;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.2mm;
+    padding: 2.2mm 2mm;
+    text-align: center;
+    font-size: 2.9mm;
+  }
+  thead th.col-uraian { text-align: left; }
+
+  tbody td {
+    padding: 1.8mm 2mm;
+    vertical-align: middle;
+    border-bottom: 0.15mm solid #e8e8e8;
+  }
+
+  .col-no   { width: 7mm;  text-align: center; }
+  .col-vol  { width: 10mm; text-align: center; }
+  .col-sat  { width: 12mm; text-align: center; }
+  .col-harga,
+  .col-jumlah { width: 22mm; text-align: right; white-space: nowrap; font-weight: 600; }
+
+  .section-row td {
+    background: #fff5f5;
+    color: #C8102E;
+    font-weight: 800;
+    font-size: 3mm;
+    letter-spacing: 0.2mm;
+    text-transform: uppercase;
+    padding: 2mm;
+    border-bottom: 0.3mm solid #C8102E;
+    vertical-align: middle;
+  }
+
+  tfoot td {
+    background: #C8102E;
+    color: #fff;
+    font-weight: 800;
+    font-size: 3.2mm;
+    padding: 2.5mm 2mm;
+    letter-spacing: 0.2mm;
+    text-transform: uppercase;
+  }
+  tfoot .total-label { text-align: right; padding-right: 4mm; }
+  tfoot .total-val { text-align: right; font-size: 3.5mm; }
+
+  .catatan {
+    padding-top: 2mm;
+    border-top: 0.5mm solid #C8102E;
+    font-size: 3mm;
+    line-height: 1.45;
+    color: #C8102E;
+    flex-shrink: 0;
+  }
+  .catatan strong {
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  @media screen {
+    body {
+      margin: 8mm auto;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  @media print {
+    html, body { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="bar-top">
+    <span>Halaman 06 &bull; Rincian Anggaran Kegiatan</span>
+  </div>
+
+  <div class="content">
+
+    <div class="page-head">
+      <h1>Rincian Anggaran</h1>
+      <div class="sub">Estimasi kebutuhan biaya rangkaian PHBN HUT RI ke-81 RW 16</div>
+    </div>
+
+    <div class="table-wrap">
+      <table>
+        <thead>
+          <tr>
+            <th class="col-no">No</th>
+            <th class="col-uraian">Uraian Kebutuhan</th>
+            <th class="col-vol">Vol</th>
+            <th class="col-sat">Sat</th>
+            <th class="col-harga">Harga (Rp)</th>
+            <th class="col-jumlah">Jumlah (Rp)</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr class="section-row"><td colspan="6">A. Kesekretariatan &amp; Publikasi</td></tr>
+          <tr><td class="col-no">1</td><td>Cetak proposal, buku tamu &amp; dokumentasi kegiatan</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">300.000</td><td class="col-jumlah">300.000</td></tr>
+          <tr><td class="col-no">2</td><td>Spanduk, banner &amp; umbul-umbul promosi kegiatan</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">800.000</td><td class="col-jumlah">800.000</td></tr>
+          <tr><td class="col-no">3</td><td>Bendera merah putih &amp; atribut 17-an</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">400.000</td><td class="col-jumlah">400.000</td></tr>
+          <tr><td class="col-no">4</td><td>Backdrop panggung &amp; photobooth</td><td class="col-vol">1</td><td class="col-sat">Unit</td><td class="col-harga">400.000</td><td class="col-jumlah">400.000</td></tr>
+
+          <tr class="section-row"><td colspan="6">B. Jalan Santai Sehat Bersama</td></tr>
+          <tr><td class="col-no">5</td><td>Doorprize jalan santai</td><td class="col-vol">20</td><td class="col-sat">Bh</td><td class="col-harga">50.000</td><td class="col-jumlah">1.000.000</td></tr>
+          <tr><td class="col-no">6</td><td>Snack &amp; minuman peserta jalan santai</td><td class="col-vol">200</td><td class="col-sat">Porsi</td><td class="col-harga">5.000</td><td class="col-jumlah">1.000.000</td></tr>
+          <tr><td class="col-no">7</td><td>Nomor dada, banner start/finish</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">250.000</td><td class="col-jumlah">250.000</td></tr>
+          <tr><td class="col-no">8</td><td>Operasional (petugas, P3K, keamanan)</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">250.000</td><td class="col-jumlah">250.000</td></tr>
+
+          <tr class="section-row"><td colspan="6">C. Lomba Anak 17-an</td></tr>
+          <tr><td class="col-no">9</td><td>Peralatan &amp; perlengkapan lomba</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">1.500.000</td><td class="col-jumlah">1.500.000</td></tr>
+          <tr><td class="col-no">10</td><td>Hadiah, piala &amp; sertifikat pemenang</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">2.000.000</td><td class="col-jumlah">2.000.000</td></tr>
+          <tr><td class="col-no">11</td><td>Snack &amp; minuman peserta lomba</td><td class="col-vol">150</td><td class="col-sat">Porsi</td><td class="col-harga">3.333</td><td class="col-jumlah">500.000</td></tr>
+
+          <tr class="section-row"><td colspan="6">D. Malam Apresiasi Seni (Puncak)</td></tr>
+          <tr><td class="col-no">12</td><td>Sewa panggung, sound system &amp; lighting</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">3.500.000</td><td class="col-jumlah">3.500.000</td></tr>
+          <tr><td class="col-no">13</td><td>Snack, makan &amp; minuman tamu undangan</td><td class="col-vol">300</td><td class="col-sat">Porsi</td><td class="col-harga">5.000</td><td class="col-jumlah">1.500.000</td></tr>
+          <tr><td class="col-no">14</td><td>Dekorasi panggung &amp; lighting malam puncak</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">1.000.000</td><td class="col-jumlah">1.000.000</td></tr>
+          <tr><td class="col-no">15</td><td>Souvenir &amp; plakat apresiasi sponsor</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">450.000</td><td class="col-jumlah">450.000</td></tr>
+
+          <tr class="section-row"><td colspan="6">E. Lain-lain</td></tr>
+          <tr><td class="col-no">16</td><td>Transport &amp; operasional panitia</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">350.000</td><td class="col-jumlah">350.000</td></tr>
+          <tr><td class="col-no">17</td><td>Dana cadangan darurat</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">300.000</td><td class="col-jumlah">300.000</td></tr>
+        </tbody>
+        <tfoot>
+          <tr>
+            <td colspan="5" class="total-label">Total Estimasi Anggaran</td>
+            <td class="total-val">Rp. 15.500.000</td>
+          </tr>
+        </tfoot>
+      </table>
+    </div>
+
+    <div class="catatan">
+      <strong>Catatan:</strong> Anggaran di atas merupakan estimasi kebutuhan biaya berdasarkan harga pasar setempat dan dapat berubah sesuai kondisi lapangan. Sumber pendanaian berasal dari iuran warga RW 16, swadaya masyarakat, dan partisipasi sponsor/mitra kerja sama. Laporan pertanggungjawaban keuangan akan disampaikan secara transparan kepada seluruh warga dan mitra setelah kegiatan selesai dilaksanakan.
+    </div>
+
+  </div>
+
+</div>
+<script src="config.js"></script>
+<script src="apply-config.js"></script>
+</body>
+</html>

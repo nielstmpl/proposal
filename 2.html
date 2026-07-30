@@ -1,0 +1,236 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Surat Permohonan - Proposal HUT RI 81</title>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #111;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    width: 210mm;
+    height: 297mm;
+    padding: 18mm 22mm 20mm;
+    overflow: hidden;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+    font-size: 3.8mm;
+    line-height: 1.65;
+  }
+
+  /* ── Kop surat ── */
+  .kop {
+    display: flex;
+    align-items: center;
+    gap: 5mm;
+    margin-bottom: 4mm;
+  }
+  .kop img {
+    height: 22mm;
+    width: auto;
+    flex-shrink: 0;
+    object-fit: contain;
+  }
+  .kop-text {
+    flex: 1;
+    text-align: center;
+    line-height: 1.35;
+  }
+  .kop-text .line1 {
+    font-size: 4.2mm;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.2mm;
+  }
+  .kop-text .line2 {
+    font-size: 4mm;
+    font-weight: 800;
+    text-transform: uppercase;
+    letter-spacing: 0.2mm;
+    margin-top: 0.5mm;
+  }
+  .kop-text .line3 {
+    font-size: 3.4mm;
+    font-weight: 500;
+    margin-top: 1mm;
+    color: #222;
+  }
+
+  .kop-rule {
+    border: none;
+    border-top: 0.9mm solid #C8102E;
+    margin-bottom: 5mm;
+  }
+
+  /* ── Meta & tanggal ── */
+  .meta-wrap {
+    display: flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    margin-bottom: 5mm;
+    gap: 8mm;
+  }
+  .meta-left {
+    flex: 1;
+    line-height: 1.7;
+  }
+  .meta-left .row {
+    display: flex;
+    gap: 2mm;
+  }
+  .meta-left .label {
+    min-width: 18mm;
+  }
+  .meta-left .perihal-val {
+    font-weight: 700;
+  }
+  .meta-right {
+    text-align: right;
+    white-space: nowrap;
+    font-weight: 500;
+  }
+
+  /* ── Kepada ── */
+  .kepada {
+    margin-bottom: 5mm;
+    line-height: 1.6;
+  }
+  .kepada .company {
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  /* ── Isi surat ── */
+  .body p {
+    text-align: justify;
+    margin-bottom: 3.5mm;
+  }
+  .body p.salam {
+    text-align: left;
+    margin-bottom: 3mm;
+  }
+  .body strong {
+    font-weight: 700;
+  }
+
+  /* ── Tanda tangan ── */
+  .sign-wrap {
+    display: flex;
+    justify-content: flex-end;
+    margin-top: 6mm;
+  }
+  .sign-block {
+    text-align: center;
+    min-width: 65mm;
+  }
+  .sign-block .salam {
+    margin-bottom: 1mm;
+  }
+  .sign-block .jabatan {
+    font-weight: 700;
+    margin-bottom: 16mm;
+  }
+  .sign-block.has-ttd .jabatan,
+  .sign-block.has-ttd .label {
+    margin-bottom: 2mm;
+  }
+  .sign-block .nama {
+    font-weight: 800;
+    text-transform: uppercase;
+    text-decoration: underline;
+    letter-spacing: 0.3mm;
+  }
+
+  @media screen {
+    body {
+      margin: 8mm auto;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  @media print {
+    html, body { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <!-- Kop Surat -->
+  <div class="kop">
+    <img src="81.png" alt="Logo HUT RI 81">
+    <div class="kop-text">
+      <div class="line1">Panitia Kegiatan Peringatan Hari Besar Nasional</div>
+      <div class="line2">HUT RI Ke-81 Rukun Warga 16</div>
+      <div class="line3">Desa Mandalasari, Kecamatan Cikalong Wetan, Kabupaten Bandung Barat</div>
+    </div>
+  </div>
+  <hr class="kop-rule">
+
+  <!-- Nomor & Tanggal -->
+  <div class="meta-wrap">
+    <div class="meta-left">
+      <div class="row"><span class="label">Nomor</span><span>: <span data-cfg="surat.nomor">01/PHBN-RW16/VII/2026</span></span></div>
+      <div class="row"><span class="label">Lampiran</span><span>: <span data-cfg="surat.lampiran">1 (satu) berkas proposal</span></span></div>
+      <div class="row"><span class="label">Perihal</span><span>: <span class="perihal-val" data-cfg="surat.perihal">Permohonan Partisipasi Sponsorship</span></span></div>
+    </div>
+    <div class="meta-right" data-cfg="meta.tanggalSurat">Cikalong Wetan, 13 Juli 2026</div>
+  </div>
+
+  <!-- Kepada -->
+  <div class="kepada">
+    Kepada Yth.<br>
+    <span data-cfg="surat.penerimaJabatan">Pimpinan / Manajemen</span><br>
+    <span class="company" data-cfg="sponsor.namaLengkap">PT Panfila Indosari (RON88)</span><br>
+    di Tempat
+  </div>
+
+  <!-- Isi -->
+  <div class="body">
+    <p class="salam">Dengan hormat,</p>
+
+    <p data-cfg-tpl="templates.suratP1">Puji syukur kehadirat Tuhan Yang Maha Esa, penghargaan dan rasa syukur kami sampaikan ke hadapan Bapak/Ibu Pimpinan <strong>PT Panfila Indosari (RON88)</strong>, semoga senantiasa diberi kesehatan dan kelancaran dalam menjalankan aktivitas perusahaan.</p>
+
+    <p data-cfg-tpl="templates.suratP2">Bersama ini kami sampaikan bahwa Panitia Peringatan Hari Besar Nasional HUT RI Ke-81 Rukun Warga 16 Desa Mandalasari, Kecamatan Cikalong Wetan, Kabupaten Bandung Barat, akan menyelenggarakan <strong>Peringatan Hari Ulang Tahun Republik Indonesia yang ke-81</strong> dengan tema <strong>&ldquo;Connected by Heart&rdquo;</strong> yang rencananya dilaksanakan pada tanggal 05 September 2026 di Lapangan Serbaguna Mandalasari.</p>
+
+    <p data-cfg-tpl="templates.suratP3">Sehubungan dengan pelaksanaan kegiatan tersebut, kami bermaksud mengajukan permohonan <strong>partisipasi dan dukungan</strong> kepada <strong>PT Panfila Indosari (RON88)</strong> berupa <strong>dukungan media promosi</strong> berupa <strong>umbul-umbul, spanduk, backdrop panggung</strong> serta bentuk dukungan lainnya yang Bapak/Ibu anggap layak untuk kelancaran pelaksanaan kegiatan peringatan HUT RI ke-81 RW 16.</p>
+
+    <p>Sebagai bahan pertimbangan, bersama surat ini kami lampirkan proposal kegiatan lengkap. Besar harapan kami agar Bapak/Ibu berkenan memberikan respon positif atas permohonan partisipasi sponsorship ini.</p>
+
+    <p>Demikian surat permohonan ini kami sampaikan. Atas perhatian, dukungan, dan kerja sama yang baik, kami mengucapkan terima kasih.</p>
+  </div>
+
+  <!-- Tanda Tangan -->
+  <div class="sign-wrap">
+    <div class="sign-block">
+      <div class="salam">Hormat kami,</div>
+      <div class="jabatan" data-cfg="panitia.ketua.jabatan">Ketua Panitia HUT RI Ke-81 RW 16</div>
+      <img data-cfg-src="panitia.ketua.ttd" alt="Tanda tangan Ketua Panitia" style="display:none; max-height:18mm; margin:0 auto 2mm;">
+      <div class="nama" data-cfg="panitia.ketua.nama">Panny Aryanto Wibowo</div>
+    </div>
+  </div>
+
+</div>
+<script src="config.js"></script>
+<script src="apply-config.js"></script>
+</body>
+</html>

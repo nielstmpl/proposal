@@ -1,0 +1,663 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Edit Config Proposal</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #f5f5f5;
+    color: #111;
+    line-height: 1.5;
+    padding: 24px 16px 48px;
+  }
+  .wrap { max-width: 820px; margin: 0 auto; }
+  h1 { font-size: 1.5rem; margin-bottom: 4px; }
+  .lead { color: #555; margin-bottom: 24px; font-size: 0.95rem; }
+  .card {
+    background: #fff;
+    border: 1px solid #e0e0e0;
+    border-radius: 10px;
+    padding: 20px;
+    margin-bottom: 16px;
+  }
+  .card h2 {
+    font-size: 0.85rem;
+    text-transform: uppercase;
+    letter-spacing: 0.06em;
+    color: #C8102E;
+    margin-bottom: 14px;
+  }
+  label {
+    display: block;
+    font-size: 0.82rem;
+    font-weight: 600;
+    margin-bottom: 4px;
+    color: #333;
+  }
+  input, textarea {
+    width: 100%;
+    padding: 10px 12px;
+    border: 1px solid #ccc;
+    border-radius: 6px;
+    font: inherit;
+    margin-bottom: 12px;
+  }
+  textarea { min-height: 72px; resize: vertical; }
+  .grid2 { display: grid; grid-template-columns: 1fr 1fr; gap: 12px; }
+  .grid2 > div { min-width: 0; }
+  .grid2 label { margin-top: 0; }
+  .grid2 input { margin-bottom: 0; }
+
+  .ttd-upload { margin-top: 4px; }
+  .ttd-upload input[type="file"] {
+    padding: 8px;
+    margin-bottom: 10px;
+    font-size: 0.85rem;
+  }
+  .ttd-preview-wrap {
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    padding: 12px;
+    text-align: center;
+    background: #fafafa;
+    min-height: 80px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 8px;
+  }
+  .ttd-preview-wrap img {
+    max-height: 70px;
+    max-width: 100%;
+    object-fit: contain;
+  }
+  .ttd-empty { font-size: 0.82rem; color: #999; }
+  .btn-clear-ttd {
+    appearance: none;
+    border: none;
+    background: none;
+    color: #C8102E;
+    font-size: 0.82rem;
+    font-weight: 600;
+    cursor: pointer;
+    padding: 0;
+  }
+  .btn-clear-ttd:hover { text-decoration: underline; }
+  .actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-top: 8px;
+  }
+  button, .btn {
+    appearance: none;
+    border: none;
+    border-radius: 8px;
+    padding: 11px 18px;
+    font: inherit;
+    font-weight: 600;
+    cursor: pointer;
+    text-decoration: none;
+    display: inline-block;
+  }
+  .btn-primary { background: #C8102E; color: #fff; }
+  .btn-secondary { background: #eee; color: #111; }
+  button:disabled, .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+  .btn-dark { background: #222; color: #fff; }
+  .btn-outline { background: #fff; border: 2px solid #C8102E; color: #C8102E; }
+  .btn-sm { padding: 7px 12px; font-size: 0.8rem; }
+  .note {
+    font-size: 0.82rem;
+    color: #666;
+    margin-top: 8px;
+  }
+  .toast {
+    position: fixed;
+    bottom: 20px;
+    right: 20px;
+    background: #111;
+    color: #fff;
+    padding: 12px 16px;
+    border-radius: 8px;
+    opacity: 0;
+    transition: opacity 0.2s;
+    pointer-events: none;
+  }
+  .toast.show { opacity: 1; }
+  .pages {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: 12px;
+  }
+  .pages a {
+    font-size: 0.82rem;
+    padding: 6px 10px;
+    background: #fff5f5;
+    color: #C8102E;
+    border-radius: 6px;
+    text-decoration: none;
+    font-weight: 600;
+  }
+
+  .status {
+    background: #fafafa;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    padding: 10px 14px;
+    font-size: 0.85rem;
+    color: #444;
+    margin-bottom: 14px;
+    min-height: 40px;
+    display: flex;
+    align-items: center;
+  }
+  .status.busy { border-color: #C8102E; color: #C8102E; font-weight: 600; }
+
+  .dl-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
+    gap: 10px;
+  }
+  .dl-item {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 8px;
+    padding: 10px 12px;
+    background: #fafafa;
+    border: 1px solid #eee;
+    border-radius: 8px;
+  }
+  .dl-item .info { min-width: 0; }
+  .dl-item .num { font-size: 0.72rem; font-weight: 800; color: #C8102E; text-transform: uppercase; }
+  .dl-item .title { font-size: 0.88rem; font-weight: 700; }
+  .dl-item .btns { display: flex; gap: 6px; flex-shrink: 0; }
+
+  #frame {
+    position: fixed;
+    left: 0;
+    top: 0;
+    width: 794px;
+    height: 1123px;
+    border: none;
+    opacity: 0;
+    pointer-events: none;
+    z-index: -1;
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+  <h1>Pengaturan Proposal</h1>
+  <p class="lead">Ubah data di sini — otomatis terapply ke halaman 1–10. Simpan, lalu buka/refresh halaman proposal.</p>
+
+  <form id="form">
+
+    <div class="card">
+      <h2>Tujuan Proposal &amp; Surat</h2>
+      <label>Nama Perusahaan / Organisasi</label>
+      <input name="sponsor.nama" placeholder="PT Panfila Indosari">
+      <label>Brand / Singkatan (opsional)</label>
+      <input name="sponsor.brand" placeholder="RON88">
+      <label>Tagline (cover, opsional)</label>
+      <input name="sponsor.tagline" placeholder="Produsen AMDK RON88">
+      <label>Jabatan Penerima Surat</label>
+      <input name="surat.penerimaJabatan" placeholder="Pimpinan / Manajemen">
+    </div>
+
+    <div class="card">
+      <h2>Ketua Panitia</h2>
+      <label>Nama</label>
+      <input name="panitia.ketua.nama">
+      <div class="grid2">
+        <div>
+          <label>WhatsApp</label>
+          <input name="panitia.ketua.wa">
+        </div>
+        <div class="ttd-upload">
+          <label>Upload Tanda Tangan</label>
+          <input type="file" accept="image/png,image/jpeg,image/webp" data-ttd-upload="panitia.ketua.ttd">
+          <input type="hidden" name="panitia.ketua.ttd">
+          <div class="ttd-preview-wrap" data-ttd-preview="panitia.ketua.ttd">
+            <img alt="Preview TTD Ketua Panitia" hidden>
+            <span class="ttd-empty">Belum ada TTD</span>
+          </div>
+          <button type="button" class="btn-clear-ttd" data-ttd-clear="panitia.ketua.ttd">Hapus TTD</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Ketua RW 16</h2>
+      <label>Nama</label>
+      <input name="panitia.ketuaRw.nama">
+      <div class="grid2">
+        <div>
+          <label>WhatsApp</label>
+          <input name="panitia.ketuaRw.wa">
+        </div>
+        <div class="ttd-upload">
+          <label>Upload Tanda Tangan</label>
+          <input type="file" accept="image/png,image/jpeg,image/webp" data-ttd-upload="panitia.ketuaRw.ttd">
+          <input type="hidden" name="panitia.ketuaRw.ttd">
+          <div class="ttd-preview-wrap" data-ttd-preview="panitia.ketuaRw.ttd">
+            <img alt="Preview TTD Ketua RW" hidden>
+            <span class="ttd-empty">Belum ada TTD</span>
+          </div>
+          <button type="button" class="btn-clear-ttd" data-ttd-clear="panitia.ketuaRw.ttd">Hapus TTD</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Detail Surat</h2>
+      <div class="grid2">
+        <div>
+          <label>Nomor Surat</label>
+          <input name="surat.nomor">
+        </div>
+        <div>
+          <label>Tanggal</label>
+          <input name="surat.tanggal">
+        </div>
+      </div>
+      <div class="grid2">
+        <div>
+          <label>Tempat</label>
+          <input name="surat.tempat">
+        </div>
+        <div>
+          <label>Perihal</label>
+          <input name="surat.perihal">
+        </div>
+      </div>
+    </div>
+
+    <div class="card">
+      <h2>Meta Kegiatan</h2>
+      <div class="grid2">
+        <div>
+          <label>Tema</label>
+          <input name="meta.tema">
+        </div>
+        <div>
+          <label>Malam Puncak</label>
+          <input name="meta.malamPuncak">
+        </div>
+      </div>
+      <label>Lokasi</label>
+      <input name="meta.lokasi">
+    </div>
+
+    <div class="actions">
+      <button type="submit" class="btn-primary">Simpan Perubahan</button>
+      <button type="button" class="btn-secondary" id="reset">Reset ke Default</button>
+    </div>
+
+    <p class="note">Tip: untuk edit lanjutan (paragraf surat, dll.), edit langsung <code>config.js</code>.</p>
+  </form>
+
+  <div class="card">
+    <h2>Unduh PDF Halaman 1–10</h2>
+    <div class="status" id="status">Simpan data dulu, lalu klik unduh.</div>
+    <div class="actions" style="margin-bottom:14px;">
+      <button type="button" class="btn-dark" id="btn-merge">⬇ Unduh 1 PDF (Hal 1–10)</button>
+      <button type="button" class="btn-secondary" id="btn-all">Unduh 10 file terpisah</button>
+    </div>
+    <div class="dl-grid" id="dl-grid"></div>
+    <p class="note" style="margin-top:12px;">Butuh internet. Tiap PDF di-generate dari browser — tunggu sampai selesai sebelum unduh berikutnya.</p>
+  </div>
+
+  <div class="card">
+    <h2>Preview Halaman</h2>
+    <div class="pages">
+      <a href="1.html" target="_blank">1 Cover</a>
+      <a href="2.html" target="_blank">2 Surat</a>
+      <a href="3.html" target="_blank">3 Pengantar</a>
+      <a href="4.html" target="_blank">4 Tema</a>
+      <a href="5.html" target="_blank">5 Kegiatan</a>
+      <a href="6.html" target="_blank">6 Anggaran</a>
+      <a href="7.html" target="_blank">7 Timeline</a>
+      <a href="8.html" target="_blank">8 Panitia</a>
+      <a href="9.html" target="_blank">9 Sponsor</a>
+      <a href="10.html" target="_blank">10 Penutup</a>
+    </div>
+  </div>
+</div>
+
+<div class="toast" id="toast">Tersimpan!</div>
+<iframe id="frame"></iframe>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+<script src="config.js"></script>
+<script>
+  const STORAGE_KEY = "proposal-config-override";
+
+  const PAGES = [
+    { num: 1,  title: "Cover",              file: "1.html",  pdf: "01-cover.pdf" },
+    { num: 2,  title: "Surat Permohonan",   file: "2.html",  pdf: "02-surat.pdf" },
+    { num: 3,  title: "Kata Pengantar",     file: "3.html",  pdf: "03-pengantar.pdf" },
+    { num: 4,  title: "Tema Kegiatan",      file: "4.html",  pdf: "04-tema.pdf" },
+    { num: 5,  title: "Rangkaian Kegiatan", file: "5.html",  pdf: "05-kegiatan.pdf" },
+    { num: 6,  title: "Rincian Anggaran",   file: "6.html",  pdf: "06-anggaran.pdf" },
+    { num: 7,  title: "Timeline",           file: "7.html",  pdf: "07-timeline.pdf" },
+    { num: 8,  title: "Susunan Panitia",    file: "8.html",  pdf: "08-panitia.pdf" },
+    { num: 9,  title: "Penawaran Sponsor",  file: "9.html",  pdf: "09-sponsor.pdf" },
+    { num: 10, title: "Penutup",            file: "10.html", pdf: "10-penutup.pdf" }
+  ];
+
+  function deepMerge(target, source) {
+    const out = { ...target };
+    for (const key of Object.keys(source)) {
+      if (source[key] && typeof source[key] === "object" && !Array.isArray(source[key])) {
+        out[key] = deepMerge(out[key] || {}, source[key]);
+      } else {
+        out[key] = source[key];
+      }
+    }
+    return out;
+  }
+
+  function getMerged() {
+    let cfg = JSON.parse(JSON.stringify(window.PROPOSAL_CONFIG));
+    try {
+      const raw = localStorage.getItem(STORAGE_KEY);
+      if (raw) cfg = deepMerge(cfg, JSON.parse(raw));
+    } catch (e) {}
+    return cfg;
+  }
+
+  function getByPath(obj, path) {
+    return path.split(".").reduce((o, k) => (o != null ? o[k] : undefined), obj);
+  }
+
+  function setByPath(obj, path, value) {
+    const keys = path.split(".");
+    let cur = obj;
+    keys.forEach((k, i) => {
+      if (i === keys.length - 1) cur[k] = value;
+      else cur = cur[k] = cur[k] || {};
+    });
+  }
+
+  function loadForm() {
+    const cfg = getMerged();
+    document.querySelectorAll("[name]").forEach((el) => {
+      const val = getByPath(cfg, el.name);
+      el.value = val != null ? val : "";
+    });
+    document.querySelectorAll("[data-ttd-upload]").forEach(el => { el.value = ""; });
+    document.querySelectorAll("[data-ttd-preview]").forEach(el => {
+      updateTtdPreview(el.dataset.ttdPreview);
+    });
+  }
+
+  function fileToDataUrl(file) {
+    return new Promise((resolve, reject) => {
+      const reader = new FileReader();
+      reader.onload = () => resolve(reader.result);
+      reader.onerror = reject;
+      reader.readAsDataURL(file);
+    });
+  }
+
+  function updateTtdPreview(path) {
+    const hidden = document.querySelector(`[name="${path}"]`);
+    const wrap = document.querySelector(`[data-ttd-preview="${path}"]`);
+    if (!hidden || !wrap) return;
+    const img = wrap.querySelector("img");
+    const empty = wrap.querySelector(".ttd-empty");
+    const val = hidden.value;
+    if (val) {
+      img.src = val;
+      img.hidden = false;
+      empty.hidden = true;
+    } else {
+      img.src = "";
+      img.hidden = true;
+      empty.hidden = false;
+    }
+  }
+
+  document.querySelectorAll("[data-ttd-upload]").forEach(input => {
+    input.addEventListener("change", async () => {
+      const path = input.dataset.ttdUpload;
+      const file = input.files[0];
+      if (!file) return;
+      if (file.size > 2 * 1024 * 1024) {
+        toast("File terlalu besar (max 2 MB)");
+        input.value = "";
+        return;
+      }
+      const dataUrl = await fileToDataUrl(file);
+      document.querySelector(`[name="${path}"]`).value = dataUrl;
+      updateTtdPreview(path);
+      toast("TTD diupload — klik Simpan Perubahan!");
+    });
+  });
+
+  document.querySelectorAll("[data-ttd-clear]").forEach(btn => {
+    btn.addEventListener("click", () => {
+      const path = btn.dataset.ttdClear;
+      document.querySelector(`[name="${path}"]`).value = "";
+      const fileInput = document.querySelector(`[data-ttd-upload="${path}"]`);
+      if (fileInput) fileInput.value = "";
+      updateTtdPreview(path);
+    });
+  });
+
+  function toast(msg) {
+    const el = document.getElementById("toast");
+    el.textContent = msg;
+    el.classList.add("show");
+    setTimeout(() => el.classList.remove("show"), 2000);
+  }
+
+  document.getElementById("form").addEventListener("submit", (e) => {
+    e.preventDefault();
+    const cfg = getMerged();
+    document.querySelectorAll("[name]").forEach((el) => {
+      const val = el.name.endsWith(".ttd") ? el.value : el.value.trim();
+      setByPath(cfg, el.name, val);
+    });
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+    toast("Tersimpan! Refresh halaman proposal.");
+  });
+
+  document.getElementById("reset").addEventListener("click", () => {
+    if (confirm("Reset semua ke isi config.js default?")) {
+      localStorage.removeItem(STORAGE_KEY);
+      loadForm();
+      toast("Reset ke default.");
+    }
+  });
+
+  loadForm();
+
+  // ── Unduh PDF ──
+  const frame = document.getElementById("frame");
+  const statusEl = document.getElementById("status");
+  const btnMerge = document.getElementById("btn-merge");
+  const btnAll = document.getElementById("btn-all");
+  const MERGED_PDF = "proposal-hut-ri-81-rw16.pdf";
+  let dlBusy = false;
+
+  function setDlBusy(v) {
+    dlBusy = v;
+    btnMerge.disabled = v;
+    btnAll.disabled = v;
+    document.querySelectorAll("[data-dl]").forEach(b => b.disabled = v);
+  }
+
+  function setStatus(msg, busy = false) {
+    statusEl.textContent = msg;
+    statusEl.classList.toggle("busy", busy);
+  }
+
+  function wait(ms) { return new Promise(r => setTimeout(r, ms)); }
+
+  function loadPage(file) {
+    return new Promise((resolve, reject) => {
+      const onLoad = () => {
+        frame.removeEventListener("error", onError);
+        resolve(frame.contentDocument);
+      };
+      const onError = () => {
+        frame.removeEventListener("load", onLoad);
+        reject(new Error("Gagal load " + file));
+      };
+      frame.addEventListener("load", onLoad, { once: true });
+      frame.addEventListener("error", onError, { once: true });
+      frame.src = file + "?t=" + Date.now();
+    });
+  }
+
+  async function waitForPageReady(doc) {
+    const win = doc.defaultView;
+    if (win.reloadProposalConfig) win.reloadProposalConfig();
+    if (doc.fonts && doc.fonts.ready) await doc.fonts.ready;
+    await Promise.all([...doc.images].map(img =>
+      img.complete ? Promise.resolve() :
+      new Promise(r => { img.onload = img.onerror = r; })
+    ));
+    await wait(400);
+  }
+
+  async function capturePageCanvas(page) {
+    setStatus(`Render hal ${page.num}/10: ${page.title}…`, true);
+    const doc = await loadPage(page.file);
+    await waitForPageReady(doc);
+    const el = doc.querySelector(".page");
+    if (!el) throw new Error("Elemen .page tidak ditemukan di " + page.file);
+
+    let holder = document.getElementById("pdf-capture-holder");
+    if (!holder) {
+      holder = document.createElement("div");
+      holder.id = "pdf-capture-holder";
+      holder.style.cssText = "position:fixed;left:0;top:0;z-index:9999;opacity:0.01;pointer-events:none;overflow:hidden;";
+      document.body.appendChild(holder);
+    }
+    holder.innerHTML = "";
+
+    doc.querySelectorAll('link[rel="stylesheet"]').forEach(link => {
+      holder.appendChild(link.cloneNode(true));
+    });
+    doc.querySelectorAll("style").forEach(style => {
+      holder.appendChild(style.cloneNode(true));
+    });
+
+    const clone = el.cloneNode(true);
+    clone.style.width = "794px";
+    clone.style.height = "1123px";
+    holder.appendChild(clone);
+
+    const origImgs = el.querySelectorAll("img");
+    clone.querySelectorAll("img").forEach((img, i) => {
+      if (origImgs[i]) img.src = origImgs[i].src;
+    });
+
+    await document.fonts.ready;
+    await wait(800);
+
+    const canvas = await html2canvas(clone, {
+      scale: 2,
+      useCORS: true,
+      allowTaint: false,
+      logging: false,
+      backgroundColor: "#ffffff",
+      width: 794,
+      height: 1123
+    });
+
+    holder.innerHTML = "";
+    return canvas;
+  }
+
+  function canvasToPdfBlob(canvas) {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+    const img = canvas.toDataURL("image/jpeg", 0.92);
+    pdf.addImage(img, "JPEG", 0, 0, 210, 297);
+    return pdf.output("blob");
+  }
+
+  async function downloadPdf(page) {
+    const canvas = await capturePageCanvas(page);
+    const blob = canvasToPdfBlob(canvas);
+    const a = document.createElement("a");
+    a.href = URL.createObjectURL(blob);
+    a.download = page.pdf;
+    a.click();
+    URL.revokeObjectURL(a.href);
+    setStatus(`✓ ${page.pdf} selesai diunduh.`);
+  }
+
+  async function downloadMerged() {
+    const { jsPDF } = window.jspdf;
+    const pdf = new jsPDF({ unit: "mm", format: "a4", orientation: "portrait" });
+
+    for (let i = 0; i < PAGES.length; i++) {
+      const canvas = await capturePageCanvas(PAGES[i]);
+      const img = canvas.toDataURL("image/jpeg", 0.92);
+      if (i > 0) pdf.addPage();
+      pdf.addImage(img, "JPEG", 0, 0, 210, 297);
+    }
+
+    pdf.save(MERGED_PDF);
+    setStatus(`✓ ${MERGED_PDF} selesai diunduh (10 halaman)!`);
+  }
+
+  const dlGrid = document.getElementById("dl-grid");
+  PAGES.forEach(page => {
+    const item = document.createElement("div");
+    item.className = "dl-item";
+    item.innerHTML = `
+      <div class="info">
+        <div class="num">Hal ${String(page.num).padStart(2, "0")}</div>
+        <div class="title">${page.title}</div>
+      </div>
+      <div class="btns">
+        <a href="${page.file}" target="_blank" class="btn btn-outline btn-sm">Preview</a>
+        <button type="button" class="btn btn-primary btn-sm" data-dl="${page.num}">Unduh</button>
+      </div>`;
+    item.querySelector("[data-dl]").addEventListener("click", async () => {
+      if (dlBusy) return;
+      setDlBusy(true);
+      try { await downloadPdf(page); }
+      catch (e) { setStatus("Error: " + e.message); }
+      finally { setDlBusy(false); }
+    });
+    dlGrid.appendChild(item);
+  });
+
+  btnMerge.addEventListener("click", async () => {
+    if (dlBusy) return;
+    setDlBusy(true);
+    try { await downloadMerged(); }
+    catch (e) { setStatus("Error: " + e.message); console.error(e); }
+    finally { setDlBusy(false); }
+  });
+
+  btnAll.addEventListener("click", async () => {
+    if (dlBusy) return;
+    setDlBusy(true);
+    try {
+      for (const page of PAGES) {
+        await downloadPdf(page);
+        await wait(600);
+      }
+      setStatus("✓ Semua 10 PDF selesai diunduh!");
+    } catch (e) {
+      setStatus("Error: " + e.message);
+    } finally {
+      setDlBusy(false);
+    }
+  });
+</script>
+</body>
+</html>

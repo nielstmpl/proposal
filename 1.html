@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Cover - Proposal HUT RI 81</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;900&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #111;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    border: 1mm solid #C8102E;
+    overflow: hidden;
+    background: #fff;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  /* ── Bars ── */
+  .bar-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 14mm;
+    background: #C8102E;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 7mm;
+    z-index: 2;
+  }
+  .bar-top .left { color: #fff; line-height: 1.35; }
+  .bar-top .line1 {
+    font-size: 3.2mm;
+    font-weight: 700;
+    letter-spacing: 0.3mm;
+    text-transform: uppercase;
+  }
+  .bar-top .line2 {
+    font-size: 3.6mm;
+    font-weight: 800;
+    letter-spacing: 0.4mm;
+    text-transform: uppercase;
+  }
+  .bar-top .year {
+    font-size: 9mm;
+    font-weight: 900;
+    color: #fff;
+    letter-spacing: 0.3mm;
+  }
+
+  .bar-bottom {
+    position: absolute;
+    bottom: 0; left: 0; right: 0;
+    height: 11mm;
+    background: #C8102E;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    z-index: 2;
+  }
+  .bar-bottom span {
+    font-size: 3.4mm;
+    font-weight: 700;
+    letter-spacing: 1mm;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  /* ── Content ── */
+  .content {
+    position: absolute;
+    top: 14mm;
+    bottom: 11mm;
+    left: 0; right: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: space-between;
+    padding: 6mm 10mm 5mm;
+  }
+
+  .block-top,
+  .block-mid,
+  .block-bottom {
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  /* ── Logo ── */
+  .logo {
+    height: 46mm;
+    width: auto;
+    max-width: 92%;
+    object-fit: contain;
+    display: block;
+    margin-bottom: 2mm;
+  }
+
+  .dirgahayu {
+    font-size: 3.8mm;
+    font-weight: 800;
+    letter-spacing: 1.8mm;
+    color: #C8102E;
+    text-transform: uppercase;
+    margin-bottom: 5mm;
+  }
+
+  /* ── Titles ── */
+  .title-block {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 5mm;
+  }
+  .title-block .line1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16mm;
+    font-weight: 900;
+    letter-spacing: 0.8mm;
+    text-transform: uppercase;
+    line-height: 1.05;
+    color: #111;
+  }
+  .title-block .line2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 16mm;
+    font-weight: 900;
+    letter-spacing: 0.8mm;
+    text-transform: uppercase;
+    line-height: 1.05;
+    color: #C8102E;
+    margin-top: 1mm;
+  }
+  .title-block .subtitle {
+    margin-top: 3mm;
+    font-size: 4.5mm;
+    font-weight: 700;
+    letter-spacing: 0.6mm;
+    text-transform: uppercase;
+    color: #222;
+    line-height: 1.35;
+  }
+
+  /* ── Theme box ── */
+  .theme-box {
+    width: 100%;
+    background: #C8102E;
+    text-align: center;
+    padding: 5mm 6mm 6mm;
+    margin-bottom: 5mm;
+  }
+  .theme-box .label {
+    font-size: 3.2mm;
+    font-weight: 700;
+    letter-spacing: 1.8mm;
+    color: #fff;
+    text-transform: uppercase;
+    margin-bottom: 2mm;
+  }
+  .theme-box .theme {
+    font-family: 'Playfair Display', serif;
+    font-size: 15mm;
+    font-weight: 600;
+    font-style: italic;
+    color: #fff;
+    line-height: 1.1;
+  }
+
+  /* ── Org ── */
+  .org-block {
+    text-align: center;
+    width: 100%;
+    margin-bottom: 4mm;
+  }
+  .org-block .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 8mm;
+    font-weight: 900;
+    letter-spacing: 0.6mm;
+    text-transform: uppercase;
+    margin-bottom: 2mm;
+  }
+  .org-block .address {
+    font-size: 3.8mm;
+    font-weight: 600;
+    letter-spacing: 0.3mm;
+    text-transform: uppercase;
+    color: #333;
+    line-height: 1.45;
+  }
+
+  .divider {
+    width: 100%;
+    height: 0.4mm;
+    background: #bbb;
+    margin-bottom: 4mm;
+  }
+
+  /* ── Recipient ── */
+  .recipient {
+    text-align: center;
+    width: 100%;
+  }
+  .recipient .label {
+    font-size: 3.2mm;
+    font-weight: 700;
+    letter-spacing: 1mm;
+    text-transform: uppercase;
+    color: #666;
+    margin-bottom: 2mm;
+  }
+  .recipient .name {
+    font-family: 'Playfair Display', serif;
+    font-size: 8.5mm;
+    font-weight: 900;
+    letter-spacing: 0.4mm;
+    text-transform: uppercase;
+    line-height: 1.15;
+  }
+
+  @media screen {
+    body {
+      margin: 8mm auto;
+      box-shadow: 0 2px 20px rgba(0, 0, 0, 0.15);
+    }
+  }
+
+  @media print {
+    html, body { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="bar-top">
+    <div class="left">
+      <div class="line1">Panitia Peringatan Hari Besar Nasional</div>
+      <div class="line2">Rukun Warga 16 · Desa Mandalasari</div>
+    </div>
+    <div class="year">2026</div>
+  </div>
+
+  <div class="content">
+
+    <div class="block-top">
+      <img class="logo" src="81.png" alt="HUT RI ke-81">
+      <div class="dirgahayu">Dirgahayu Republik Indonesia</div>
+
+      <div class="title-block">
+        <div class="line1">Proposal Kegiatan</div>
+        <div class="line2">HUT RI Ke-81</div>
+        <div class="subtitle">Peringatan Hari Kemerdekaan Republik Indonesia</div>
+      </div>
+    </div>
+
+    <div class="block-mid">
+      <div class="theme-box">
+        <div class="label">Tema Kegiatan</div>
+        <div class="theme" data-cfg="meta.tema">Connected by Heart</div>
+      </div>
+
+      <div class="org-block">
+        <div class="name">Rukun Warga 16</div>
+        <div class="address">
+          Desa Mandalasari · Kecamatan Cikalong Wetan<br>
+          Kabupaten Bandung Barat
+        </div>
+      </div>
+    </div>
+
+    <div class="block-bottom">
+      <div class="divider"></div>
+      <div class="recipient">
+        <div class="label">Diajukan Kepada</div>
+        <div class="name" data-cfg="sponsor.namaLengkap">PT Panfila Indosari (RON88)</div>
+      </div>
+    </div>
+
+  </div>
+
+  <div class="bar-bottom">
+    <span>17 Agustus 1945 · 17 Agustus 2026</span>
+  </div>
+
+</div>
+<script src="config.js"></script>
+<script src="apply-config.js"></script>
+</body>
+</html>

@@ -1,0 +1,288 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Halaman 08 - Susunan Kepanitiaan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@600;700;800&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #111;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    background: #fff;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  .bar-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 13mm;
+    background: #C8102E;
+    display: flex;
+    align-items: center;
+    padding: 0 10mm;
+    z-index: 2;
+  }
+  .bar-top span {
+    font-size: 3.4mm;
+    font-weight: 700;
+    letter-spacing: 0.4mm;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .content {
+    position: absolute;
+    top: 13mm;
+    bottom: 0;
+    left: 0; right: 0;
+    padding: 4mm 8mm 6mm;
+    display: flex;
+    flex-direction: column;
+    gap: 3mm;
+  }
+
+  .page-head h1 {
+    font-family: 'Playfair Display', serif;
+    font-size: 7mm;
+    font-weight: 800;
+    color: #111;
+    padding-left: 4mm;
+    border-left: 1.5mm solid #C8102E;
+    line-height: 1.1;
+    margin-bottom: 1mm;
+  }
+  .page-head .sub {
+    font-size: 3.5mm;
+    font-weight: 500;
+    font-style: italic;
+    color: #666;
+    padding-left: 5.5mm;
+  }
+
+  .sec-bar {
+    background: #C8102E;
+    color: #fff;
+    font-size: 3.2mm;
+    font-weight: 800;
+    letter-spacing: 0.3mm;
+    text-transform: uppercase;
+    padding: 2.2mm 4mm;
+  }
+
+  /* ── List rows ── */
+  .row-list {
+    border: 0.3mm solid #e8e8e8;
+    border-top: none;
+  }
+  .row-item {
+    display: flex;
+    padding: 2.2mm 4mm;
+    border-bottom: 0.2mm solid #eee;
+    font-size: 3.2mm;
+    line-height: 1.4;
+  }
+  .row-item:last-child { border-bottom: none; }
+  .row-item .label {
+    width: 38mm;
+    flex-shrink: 0;
+    font-weight: 700;
+    color: #C8102E;
+  }
+  .row-item .val {
+    flex: 1;
+    font-weight: 600;
+  }
+  .row-item .val .role {
+    font-weight: 400;
+    color: #555;
+    font-size: 3mm;
+  }
+
+  /* ── Seksi grid ── */
+  .seksi-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 3mm;
+    flex: 1;
+    min-height: 0;
+  }
+
+  .seksi-box {
+    background: #fff5f5;
+    border: 0.3mm solid #f0d0d0;
+    border-left: 1.2mm solid #C8102E;
+    padding: 3mm 3.5mm;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  .seksi-box h3 {
+    font-size: 3.3mm;
+    font-weight: 800;
+    color: #C8102E;
+    margin-bottom: 2mm;
+    line-height: 1.25;
+  }
+  .seksi-box p {
+    font-size: 3.1mm;
+    line-height: 1.45;
+    color: #333;
+  }
+  .seksi-box p + p {
+    margin-top: 1mm;
+  }
+  .seksi-box strong {
+    font-weight: 700;
+    color: #111;
+  }
+
+  .catatan {
+    font-size: 3mm;
+    line-height: 1.45;
+    color: #C8102E;
+    padding-top: 1mm;
+    flex-shrink: 0;
+  }
+  .catatan strong {
+    font-weight: 800;
+    text-transform: uppercase;
+  }
+
+  @media screen {
+    body {
+      margin: 8mm auto;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  @media print {
+    html, body { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="bar-top">
+    <span>Halaman 08 &bull; Susunan Kepanitiaan</span>
+  </div>
+
+  <div class="content">
+
+    <div class="page-head">
+      <h1>Susunan Panitia</h1>
+      <div class="sub">PHBN HUT RI ke-81 RW 16 Desa Mandalasari &mdash; Tahun 2026</div>
+    </div>
+
+    <div>
+      <div class="sec-bar">Pelindung &amp; Penanggung Jawab</div>
+      <div class="row-list">
+        <div class="row-item">
+          <span class="label">Pelindung</span>
+          <span class="val">Kepala Desa Mandalasari</span>
+        </div>
+        <div class="row-item">
+          <span class="label">Penasihat</span>
+          <span class="val">Tokoh Masyarakat &amp; Tokoh Agama RW 16</span>
+        </div>
+        <div class="row-item">
+          <span class="label">Penanggung Jawab</span>
+          <span class="val"><span data-cfg="panitia.ketuaRw.nama">Agus Kusnadi</span> <span class="role">(Ketua RW 16)</span></span>
+        </div>
+      </div>
+    </div>
+
+    <div>
+      <div class="sec-bar">Panitia Inti</div>
+      <div class="row-list">
+        <div class="row-item">
+          <span class="label">Ketua Panitia</span>
+          <span class="val" data-cfg="panitia.ketua.nama">Panny Aryanto Wibowo</span>
+        </div>
+        <div class="row-item">
+          <span class="label">Wakil Ketua</span>
+          <span class="val">Rizky Irwan Ramdas</span>
+        </div>
+        <div class="row-item">
+          <span class="label">Sekretaris</span>
+          <span class="val">Krisna Rama Wijaya</span>
+        </div>
+        <div class="row-item">
+          <span class="label">Bendahara</span>
+          <span class="val">Amanta Ivan</span>
+        </div>
+      </div>
+    </div>
+
+    <div style="flex:1;display:flex;flex-direction:column;gap:2.5mm;min-height:0;">
+      <div class="sec-bar">Seksi &ndash; Seksi Kegiatan</div>
+      <div class="seksi-grid">
+        <div class="seksi-box">
+          <h3>Seksi Acara &amp; Lomba</h3>
+          <p><strong>Koordinator:</strong> Perwakilan Karang Taruna</p>
+          <p><strong>Anggota:</strong> 5&ndash;7 orang perwakilan tiap RT</p>
+        </div>
+        <div class="seksi-box">
+          <h3>Seksi Perlengkapan</h3>
+          <p><strong>Koordinator:</strong> Perwakilan Warga RW 16</p>
+          <p><strong>Anggota:</strong> 4&ndash;5 orang</p>
+        </div>
+        <div class="seksi-box">
+          <h3>Seksi Konsumsi</h3>
+          <p><strong>Koordinator:</strong> Perwakilan Ibu-Ibu PKK</p>
+          <p><strong>Anggota:</strong> 5&ndash;6 orang</p>
+        </div>
+        <div class="seksi-box">
+          <h3>Seksi Humas &amp; Publikasi</h3>
+          <p><strong>Koordinator:</strong> Perwakilan Warga RW 16</p>
+          <p><strong>Anggota:</strong> 3&ndash;4 orang</p>
+        </div>
+        <div class="seksi-box">
+          <h3>Seksi Dokumentasi</h3>
+          <p><strong>Koordinator:</strong> Perwakilan Karang Taruna</p>
+          <p><strong>Anggota:</strong> 2&ndash;3 orang</p>
+        </div>
+        <div class="seksi-box">
+          <h3>Seksi Keamanan &amp; Kebersihan</h3>
+          <p><strong>Koordinator:</strong> Ketua RT masing-masing</p>
+          <p><strong>Anggota:</strong> Linmas RW 16</p>
+        </div>
+      </div>
+    </div>
+
+    <div class="catatan">
+      <strong>Catatan:</strong> Daftar nama anggota seksi secara lengkap akan disampaikan dalam Surat Keputusan Kepanitiaan yang ditetapkan oleh Ketua RW 16. Susunan di atas dapat menyesuaikan hasil rapat panitia berikutnya.
+    </div>
+
+  </div>
+
+</div>
+<script src="config.js"></script>
+<script src="apply-config.js"></script>
+</body>
+</html>

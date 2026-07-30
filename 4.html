@@ -1,0 +1,273 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<title>Halaman 04 - Tema Kegiatan</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,600;0,700;0,800;1,600;1,700&family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+<style>
+  @page {
+    size: A4 portrait;
+    margin: 0;
+  }
+
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  html, body {
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    font-family: 'Inter', sans-serif;
+    background: #fff;
+    color: #111;
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+
+  .page {
+    position: relative;
+    width: 210mm;
+    height: 297mm;
+    overflow: hidden;
+    background: #fff;
+    page-break-after: avoid;
+    page-break-inside: avoid;
+  }
+
+  .bar-top {
+    position: absolute;
+    top: 0; left: 0; right: 0;
+    height: 13mm;
+    background: #C8102E;
+    display: flex;
+    align-items: center;
+    padding: 0 10mm;
+    z-index: 2;
+  }
+  .bar-top span {
+    font-size: 3.4mm;
+    font-weight: 700;
+    letter-spacing: 0.4mm;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .content {
+    position: absolute;
+    top: 13mm;
+    bottom: 0;
+    left: 0; right: 0;
+    padding: 7mm 12mm 10mm;
+    font-size: 4.2mm;
+    line-height: 1.6;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  /* ── Hero tema ── */
+  .hero {
+    text-align: center;
+    margin-bottom: 2mm;
+  }
+  .hero .eyebrow {
+    font-size: 3.6mm;
+    font-weight: 800;
+    letter-spacing: 1.4mm;
+    color: #C8102E;
+    text-transform: uppercase;
+    margin-bottom: 4mm;
+  }
+  .hero .title {
+    font-family: 'Playfair Display', serif;
+    font-size: 20mm;
+    font-weight: 700;
+    font-style: italic;
+    line-height: 1.0;
+    color: #111;
+  }
+  .hero .title .red {
+    color: #C8102E;
+  }
+  .hero .divider {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3mm;
+    margin: 4mm auto;
+    width: 60mm;
+  }
+  .hero .divider::before,
+  .hero .divider::after {
+    content: '';
+    flex: 1;
+    height: 0.4mm;
+    background: #C8102E;
+  }
+  .hero .divider .diamond {
+    width: 3mm;
+    height: 3mm;
+    background: #C8102E;
+    transform: rotate(45deg);
+    flex-shrink: 0;
+  }
+  .hero .tagline {
+    font-family: 'Playfair Display', serif;
+    font-size: 4.4mm;
+    font-style: italic;
+    color: #333;
+    line-height: 1.45;
+    max-width: 175mm;
+    margin: 0 auto;
+  }
+
+  /* ── Section heading ── */
+  .section {
+    margin-bottom: 0;
+  }
+  .section h2 {
+    font-family: 'Playfair Display', serif;
+    font-size: 6.5mm;
+    font-weight: 800;
+    color: #111;
+    padding-left: 4mm;
+    border-left: 1.5mm solid #C8102E;
+    margin-bottom: 3.5mm;
+    line-height: 1.15;
+  }
+  .section p {
+    text-align: justify;
+  }
+
+  /* ── Three pillars ── */
+  .pillars {
+    display: grid;
+    grid-template-columns: 1fr 1fr 1fr;
+    gap: 5mm;
+    margin: 2mm 0;
+  }
+  .pillar {
+    border: 0.5mm solid #C8102E;
+    text-align: center;
+    overflow: hidden;
+    display: flex;
+    flex-direction: column;
+  }
+  .pillar .num {
+    background: #C8102E;
+    color: #fff;
+    font-size: 5.5mm;
+    font-weight: 800;
+    padding: 3mm;
+    letter-spacing: 0.3mm;
+  }
+  .pillar .keyword {
+    font-size: 5mm;
+    font-weight: 800;
+    color: #C8102E;
+    letter-spacing: 0.6mm;
+    text-transform: uppercase;
+    padding: 4mm 2mm 3mm;
+  }
+  .pillar .desc {
+    font-size: 3.8mm;
+    line-height: 1.45;
+    color: #222;
+    padding: 0 4mm 5mm;
+    text-align: center;
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  /* ── List ── */
+  .section ul {
+    margin: 0;
+    padding: 0 0 0 6mm;
+  }
+  .section ul li {
+    text-align: justify;
+    margin-bottom: 2.5mm;
+    padding-left: 1.5mm;
+    font-size: 4.2mm;
+  }
+  .section ul li:last-child {
+    margin-bottom: 0;
+  }
+  .section ul li::marker {
+    color: #C8102E;
+    font-size: 4.5mm;
+  }
+
+  @media screen {
+    body {
+      margin: 8mm auto;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.12);
+    }
+  }
+
+  @media print {
+    html, body { margin: 0; box-shadow: none; }
+  }
+</style>
+</head>
+<body>
+<div class="page">
+
+  <div class="bar-top">
+    <span>Halaman 04 &bull; Tema Kegiatan</span>
+  </div>
+
+  <div class="content">
+
+    <div class="hero">
+      <div class="eyebrow">Tema Kegiatan HUT RI Ke-81</div>
+      <div class="title"><span data-cfg="meta.temaFirst">Connected by</span><br><span class="red" data-cfg="meta.temaLast">Heart</span></div>
+      <div class="divider"><span class="diamond"></span></div>
+      <div class="tagline">&ldquo;Merajut kembali kebersamaan warga RW 16 melalui semangat kemerdekaan &mdash; bukan sekadar berkumpul, tetapi terhubung dari hati ke hati.&rdquo;</div>
+    </div>
+
+    <section class="section">
+      <h2>Filosofi Tema</h2>
+      <p>Tema <strong>&ldquo;Connected by Heart&rdquo;</strong> dipilih sebagai spirit utama peringatan HUT RI ke-81 RW 16 Desa Mandalasari. Tema ini mencerminkan keinginan warga untuk kembali terhubung secara emosional dan sosial setelah masa-masa yang sempat menjauhkan interaksi antarwarga. Melalui semangat kemerdekaan, kami ingin membangun kembali kebersamaan yang tulus, inklusif, dan penuh kepedulian &mdash; bukan sekadar berkumpul, melainkan saling mengenal, saling mendukung, dan saling memiliki lingkungan RW 16.</p>
+    </section>
+
+    <div class="pillars">
+      <div class="pillar">
+        <div class="num">01</div>
+        <div class="keyword">Connected</div>
+        <div class="desc">Terhubungnya kembali seluruh warga lintas generasi melalui kegiatan bersama.</div>
+      </div>
+      <div class="pillar">
+        <div class="num">02</div>
+        <div class="keyword">By</div>
+        <div class="desc">Sarana melalui gotong royong, kegiatan sehat, dan apresiasi seni budaya.</div>
+      </div>
+      <div class="pillar">
+        <div class="num">03</div>
+        <div class="keyword">Heart</div>
+        <div class="desc">Ketulusan hati yang murni tanpa sekat, penuh kepedulian dan rasa memiliki.</div>
+      </div>
+    </div>
+
+    <section class="section">
+      <h2>Sasaran Kegiatan</h2>
+      <ul>
+        <li>Seluruh warga RW 16 Desa Mandalasari &mdash; anak-anak, remaja, dewasa, dan lansia.</li>
+        <li>Pengurus RT/RW, tokoh masyarakat, dan tokoh agama di lingkungan RW 16.</li>
+        <li>Karang Taruna dan organisasi kepemudaan setempat.</li>
+        <li>Mitra kerja sama, pelaku UMKM, dan sponsor pendukung kegiatan.</li>
+      </ul>
+    </section>
+
+  </div>
+
+</div>
+<script src="config.js"></script>
+<script src="apply-config.js"></script>
+</body>
+</html>
