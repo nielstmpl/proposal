@@ -663,6 +663,12 @@
     });
     if (!cfg.penerima.namaLengkap) {
       cfg.penerima.namaLengkap = cfg.penerima.nama;
+    } else if (cfg.penerima.nama) {
+      const nama = cfg.penerima.nama.trim();
+      const lengkap = cfg.penerima.namaLengkap.trim();
+      if (nama.length > lengkap.length && nama.startsWith(lengkap)) {
+        cfg.penerima.namaLengkap = nama;
+      }
     }
     if (VARIANT === "sponsor" && cfg.sponsor) {
       cfg.penerima.nama = cfg.sponsor.nama;
@@ -768,6 +774,8 @@
     doc.querySelectorAll(".recipient .name, .kepada .company, [data-cfg='penerima.namaLengkap'], [data-cfg='penerima.nama']").forEach((el) => {
       el.style.letterSpacing = "normal";
       el.style.wordSpacing = "normal";
+      el.style.whiteSpace = "normal";
+      el.style.overflowWrap = "break-word";
     });
   }
 

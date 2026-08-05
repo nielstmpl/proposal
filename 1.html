@@ -110,6 +110,11 @@
     align-items: center;
   }
 
+  .block-bottom {
+    overflow: visible;
+    flex-shrink: 0;
+  }
+
   /* ── Logo ── */
   .logo {
     height: 46mm;
@@ -239,8 +244,11 @@
     letter-spacing: normal;
     word-spacing: normal;
     text-transform: uppercase;
-    line-height: 1.15;
+    line-height: 1.2;
     white-space: normal;
+    overflow-wrap: break-word;
+    max-width: 100%;
+    padding: 0 4mm;
   }
 
   @media screen {

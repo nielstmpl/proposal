@@ -48,6 +48,12 @@
       c.penerima.namaLengkap = c.penerima.brand
         ? `${c.penerima.nama} (${c.penerima.brand})`
         : c.penerima.nama || "";
+    } else if (c.penerima.nama) {
+      const nama = String(c.penerima.nama).trim();
+      const lengkap = String(c.penerima.namaLengkap).trim();
+      if (nama.length > lengkap.length && nama.startsWith(lengkap)) {
+        c.penerima.namaLengkap = nama;
+      }
     }
     c.meta = c.meta || {};
     c.meta.tanggalSurat = `${c.surat?.tempat || ""}, ${c.surat?.tanggal || ""}`.replace(/^,\s*/, "");
@@ -202,19 +208,30 @@
     }
   }
 
-  function displayText(val, path) {
-    const text = val != null ? String(val) : "";
-    if (/\.(nama|namaLengkap)$/.test(path || "") || path === "panitia.ketua.nama" || path === "panitia.ketuaRw.nama") {
-      return text.replace(/ /g, "\u00a0");
-    }
-    return text;
+  function fitRecipientName(el, text) {
+    if (!el || !text) return;
+    el.textContent = text;
+    el.style.letterSpacing = "normal";
+    el.style.wordSpacing = "normal";
+    el.style.whiteSpace = "normal";
+    el.style.overflowWrap = "break-word";
+    const len = text.length;
+    if (len > 28) el.style.fontSize = "5.5mm";
+    else if (len > 22) el.style.fontSize = "6.5mm";
+    else if (len > 16) el.style.fontSize = "7.2mm";
+    else el.style.fontSize = "";
   }
 
   function apply(cfg) {
     document.querySelectorAll("[data-cfg]").forEach((el) => {
       const path = el.dataset.cfg;
       const val = getByPath(cfg, path);
-      if (val != null) el.textContent = displayText(val, path);
+      if (val == null) return;
+      if (path === "penerima.namaLengkap") {
+        fitRecipientName(el, String(val));
+        return;
+      }
+      el.textContent = String(val);
     });
 
     document.querySelectorAll("[data-cfg-html]").forEach((el) => {
