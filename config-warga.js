@@ -71,22 +71,24 @@ window.PROPOSAL_CONFIG = {
       { no: 2, uraian: "Spanduk, banner & promosi kegiatan", vol: 1, sat: "Paket", harga: 400000, jumlah: 400000 },
       { no: 3, uraian: "Bendera merah putih & atribut 17-an", vol: 1, sat: "Paket", harga: 300000, jumlah: 300000 },
       { no: 4, uraian: "Backdrop panggung & photobooth", vol: 1, sat: "Unit", harga: 200000, jumlah: 200000 },
-      { type: "section", label: "B. Jalan Santai Sehat Bersama" },
-      { no: 5, uraian: "Doorprize jalan santai", vol: 16, sat: "Bh", harga: 50000, jumlah: 800000 },
-      { no: 6, uraian: "Snack & minuman peserta jalan santai", vol: 160, sat: "Porsi", harga: 5000, jumlah: 800000 },
-      { no: 7, uraian: "Nomor dada, banner start/finish", vol: 1, sat: "Paket", harga: 200000, jumlah: 200000 },
-      { no: 8, uraian: "Operasional (petugas, P3K, keamanan)", vol: 1, sat: "Paket", harga: 350000, jumlah: 350000 },
+      { type: "section", label: "B. Perlombaan Pra-Agustus" },
+      { no: 5, uraian: "Hadiah & piala turnamen bola voli antar RT", vol: 1, sat: "Paket", harga: 300000, jumlah: 300000 },
+      { no: 6, uraian: "Hadiah & piala turnamen badminton", vol: 1, sat: "Paket", harga: 250000, jumlah: 250000 },
+      { no: 7, uraian: "Hadiah & piala turnamen futsal anak", vol: 1, sat: "Paket", harga: 300000, jumlah: 300000 },
+      { no: 8, uraian: "Karnaval 17-an (atribut, kostum & banner RT)", vol: 1, sat: "Paket", harga: 400000, jumlah: 400000 },
+      { no: 9, uraian: "Perlengkapan olahraga & kebutuhan lapangan", vol: 1, sat: "Paket", harga: 350000, jumlah: 350000 },
+      { no: 10, uraian: "Snack & minuman peserta/pemain", vol: 1, sat: "Paket", harga: 100000, jumlah: 100000 },
       { type: "section", label: "C. Lomba Anak 17-an" },
-      { no: 9, uraian: "Peralatan & perlengkapan lomba", vol: 1, sat: "Paket", harga: 700000, jumlah: 700000 },
-      { no: 10, uraian: "Hadiah, piala & sertifikat pemenang", vol: 1, sat: "Paket", harga: 1150000, jumlah: 1150000 },
-      { no: 11, uraian: "Snack & minuman peserta lomba", vol: 150, sat: "Porsi", harga: 3333, jumlah: 500000 },
+      { no: 11, uraian: "Peralatan & perlengkapan lomba", vol: 1, sat: "Paket", harga: 700000, jumlah: 700000 },
+      { no: 12, uraian: "Hadiah, piala & sertifikat pemenang", vol: 1, sat: "Paket", harga: 1150000, jumlah: 1150000 },
+      { no: 13, uraian: "Snack & minuman peserta lomba", vol: 150, sat: "Porsi", harga: 3333, jumlah: 500000 },
       { type: "section", label: "D. Malam Apresiasi Seni (Puncak)" },
-      { no: 12, uraian: "Sewa panggung, sound system & lighting", vol: 1, sat: "Paket", harga: 2000000, jumlah: 2000000 },
-      { no: 13, uraian: "Snack, makan & minuman tamu undangan", vol: 180, sat: "Porsi", harga: 5000, jumlah: 900000 },
-      { no: 14, uraian: "Dekorasi panggung & lighting malam puncak", vol: 1, sat: "Paket", harga: 580000, jumlah: 580000 },
+      { no: 14, uraian: "Sewa panggung, sound system & lighting", vol: 1, sat: "Paket", harga: 2000000, jumlah: 2000000 },
+      { no: 15, uraian: "Snack, makan & minuman tamu undangan", vol: 180, sat: "Porsi", harga: 5000, jumlah: 900000 },
+      { no: 16, uraian: "Dekorasi panggung & lighting malam puncak", vol: 1, sat: "Paket", harga: 580000, jumlah: 580000 },
       { type: "section", label: "E. Lain-lain" },
-      { no: 16, uraian: "Transport & operasional panitia", vol: 1, sat: "Paket", harga: 350000, jumlah: 350000 },
-      { no: 17, uraian: "Dana cadangan darurat", vol: 1, sat: "Paket", harga: 300000, jumlah: 300000 }
+      { no: 17, uraian: "Transport & operasional panitia", vol: 1, sat: "Paket", harga: 350000, jumlah: 350000 },
+      { no: 18, uraian: "Dana cadangan darurat", vol: 1, sat: "Paket", harga: 300000, jumlah: 300000 }
     ]
   },
 
@@ -100,7 +102,7 @@ window.PROPOSAL_CONFIG = {
       { letter: "A", title: "Iuran per KK", desc: "Besaran iuran ditetapkan berdasarkan musyawarah warga. Nominal final akan diinformasikan melalui Ketua RT masing-masing dan grup WhatsApp warga." },
       { letter: "B", title: "Skema Pembayaran", desc: "Pembayaran dapat dilakukan secara bertahap (paling lambat H-7 malam puncak) melalui bendahara panitia atau perwakilan RT." },
       { letter: "C", title: "Swadaya & Donor Sukarela", desc: "Warga yang ingin memberikan kontribusi di atas iuran wajib dipersilakan. Seluruh penerimaan dicatat dan dilaporkan secara transparan." },
-      { letter: "D", title: "Penggunaan Dana", desc: "Dana iuran warga digunakan untuk kebutuhan kegiatan: lomba, jalan santai, konsumsi, perlengkapan, dan malam puncak — bukan untuk keperluan pribadi panitia." }
+      { letter: "D", title: "Penggunaan Dana", desc: "Dana iuran warga digunakan untuk kebutuhan kegiatan: perlombaan pra-Agustus, lomba 17-an, konsumsi, perlengkapan, dan malam puncak — bukan untuk keperluan pribadi panitia." }
     ],
     benefitsTitle: "Informasi & Transparansi",
     benefits: [
@@ -117,6 +119,24 @@ window.PROPOSAL_CONFIG = {
     suratP3: "Untuk kelancaran pelaksanaan kegiatan, panitia membutuhkan dukungan berupa <strong>iuran warga</strong> dan partisipasi aktif seluruh lapisan masyarakat RW 16. Rincian kebutuhan biaya, rencana iuran, dan susunan kegiatan terlampir dalam proposal ini.",
     suratP4: "Besar harapan kami agar seluruh warga RW 16 dapat berpartisipasi — baik melalui iuran, tenaga, maupun kehadiran — agar perayaan HUT RI ke-{{meta.hut}} berjalan meriah, khidmat, dan penuh kebersamaan.",
     penutupP1: "Demikian proposal Peringatan Hari Ulang Tahun Republik Indonesia yang ke-{{meta.hut}} tingkat {{meta.rw}} {{meta.desa}} ini kami susun sebagai pedoman pelaksanaan dan informasi kepada <strong>seluruh warga RW 16</strong> agar kegiatan dapat berjalan lancar, transparan, dan bermakna.",
+    penutupP2: "Kami menyadari bahwa keberhasilan kegiatan ini sangat bergantung pada partisipasi dan dukungan seluruh warga RW 16. Oleh karena itu, kami mengajak semua pihak untuk bersama-sama mewujudkan perayaan HUT RI ke-{{meta.hut}} yang meriah dan bermakna.",
+    penutupDisclaimer: "<strong>Catatan:</strong> Seluruh rangkaian kegiatan dalam proposal ini masih bersifat rencana. Pelaksanaan setiap kegiatan akan diimplementasikan apabila anggaran dan kondisi lapangan memungkinkan, serta dapat disesuaikan berdasarkan musyawarah panitia dan warga.",
     timelineSosialisasi: "Sosialisasi ke seluruh warga {{meta.rw}}, penyebaran informasi kegiatan, dan koordinasi iuran melalui Ketua RT masing-masing."
+  },
+
+  kegiatan1: {
+    tags: "Sport &bull; Karnaval &bull; Pra-Agustus",
+    title: "Perlombaan Pra-Agustus",
+    date: "21 Juli &ndash; 2 Agustus 2026",
+    desc: "Rangkaian turnamen pra-HUT RI meliputi <strong>bola voli</strong> dan <strong>badminton</strong> antar tim/RT warga, <strong>futsal anak</strong>, serta <strong>karnaval 17-an</strong> keliling lingkungan RW. Kegiatan ini menjadi momentum pembuka semangat kemerdekaan sekaligus arena silaturahmi antarwarga.",
+    meta: "<strong>Cabang:</strong> Voli, Badminton, Futsal Anak, Karnaval 17-an &nbsp;&nbsp; <strong>Lokasi:</strong> Lapangan RW 16 &amp; jalur lingkungan RT"
+  },
+
+  rangkaianSub: "Pra-Agustus, lomba 17-an, hingga malam puncak — PHBN RW 16 tahun 2026",
+
+  timelinePraAgustus: {
+    date: "21 Juli &ndash; 2 Agustus 2026",
+    title: "Perlombaan Pra-Agustus",
+    desc: "Turnamen voli &amp; badminton antar RT, futsal anak, dan karnaval 17-an melintasi lingkungan RW — pembuka rangkaian PHBN."
   }
 };

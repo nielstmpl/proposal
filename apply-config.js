@@ -138,6 +138,34 @@
     if (catEl && p.catatan) catEl.textContent = p.catatan;
   }
 
+  function renderKegiatan1(cfg) {
+    const k = cfg.kegiatan1;
+    if (!k) return;
+    const setHtml = (id, val) => {
+      const el = document.getElementById(id);
+      if (el && val != null) el.innerHTML = val;
+    };
+    setHtml("kg1-tags", k.tags);
+    setHtml("kg1-title", k.title);
+    setHtml("kg1-date", k.date);
+    setHtml("kg1-desc", k.desc);
+    setHtml("kg1-meta", k.meta);
+    const sub = document.getElementById("rangkaian-sub");
+    if (sub && cfg.rangkaianSub) sub.textContent = cfg.rangkaianSub;
+  }
+
+  function renderTimelinePraAgustus(cfg) {
+    const t = cfg.timelinePraAgustus;
+    if (!t) return;
+    const setHtml = (id, val) => {
+      const el = document.getElementById(id);
+      if (el && val != null) el.innerHTML = val;
+    };
+    setHtml("tl-pra-date", t.date);
+    setHtml("tl-pra-title", t.title);
+    setHtml("tl-pra-desc", t.desc);
+  }
+
   function renderHal9(cfg) {
     const h = cfg.hal9;
     if (!h) return;
@@ -211,6 +239,8 @@
     renderAnggaran(cfg);
     renderPanitia(cfg);
     renderHal9(cfg);
+    renderKegiatan1(cfg);
+    renderTimelinePraAgustus(cfg);
   }
 
   window.reloadProposalConfig = function () {
