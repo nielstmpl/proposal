@@ -177,15 +177,16 @@
   .dl-item .title { font-size: 0.88rem; font-weight: 700; }
   .dl-item .btns { display: flex; gap: 6px; flex-shrink: 0; }
 
-  #frame, #pdf-cap-frame {
+  #frame {
     position: fixed;
     left: -10000px;
     top: 0;
     width: 794px;
     height: 1123px;
     border: none;
-    visibility: hidden;
+    opacity: 0.01;
     pointer-events: none;
+    z-index: -1;
   }
   body.pdf-busy { overflow: hidden; }
 
@@ -712,44 +713,53 @@
 
   function loadPage(file) {
     return new Promise((resolve, reject) => {
-      const onLoad = () => {
-        frame.removeEventListener("error", onError);
-        resolve(frame.contentDocument);
-      };
-      const onError = () => {
+      const timeout = setTimeout(() => {
+        cleanup();
+        reject(new Error("Timeout load " + file));
+      }, 30000);
+
+      const cleanup = () => {
+        clearTimeout(timeout);
         frame.removeEventListener("load", onLoad);
+        frame.removeEventListener("error", onError);
+      };
+
+      const tryResolve = () => {
+        const doc = frame.contentDocument;
+        if (!doc || !doc.body) return false;
+        if (!doc.querySelector(".page")) return false;
+        cleanup();
+        resolve(doc);
+        return true;
+      };
+
+      const onLoad = () => {
+        if (tryResolve()) return;
+        setTimeout(() => {
+          if (!tryResolve()) {
+            cleanup();
+            reject(new Error("Gagal load " + file));
+          }
+        }, 300);
+      };
+
+      const onError = () => {
+        cleanup();
         reject(new Error("Gagal load " + file));
       };
-      frame.addEventListener("load", onLoad, { once: true });
-      frame.addEventListener("error", onError, { once: true });
+
+      frame.addEventListener("load", onLoad);
+      frame.addEventListener("error", onError);
       frame.src = file + (file.includes("?") ? "&" : "?") + "t=" + Date.now();
     });
   }
 
   async function waitForPageReady(doc) {
+    if (!doc || !doc.defaultView) {
+      throw new Error("Dokumen halaman tidak siap");
+    }
     const win = doc.defaultView;
     if (win.reloadProposalConfig) win.reloadProposalConfig();
-    if (doc.fonts && doc.fonts.ready) await doc.fonts.ready;
-    await Promise.all([...doc.images].map(img =>
-      img.complete ? Promise.resolve() :
-      new Promise(r => { img.onload = img.onerror = r; })
-    ));
-    await wait(400);
-  }
-
-  function getCaptureFrame() {
-    let capFrame = document.getElementById("pdf-cap-frame");
-    if (!capFrame) {
-      capFrame = document.createElement("iframe");
-      capFrame.id = "pdf-cap-frame";
-      capFrame.setAttribute("aria-hidden", "true");
-      capFrame.title = "PDF capture";
-      document.body.appendChild(capFrame);
-    }
-    return capFrame;
-  }
-
-  async function waitForCaptureReady(doc) {
     if (doc.fonts && doc.fonts.ready) await doc.fonts.ready;
     await Promise.all([...doc.images].map(img =>
       img.complete ? Promise.resolve() :
@@ -765,31 +775,22 @@
     const el = doc.querySelector(".page");
     if (!el) throw new Error("Elemen .page tidak ditemukan di " + page.file);
 
-    const capFrame = getCaptureFrame();
-    const cdoc = capFrame.contentDocument;
-    const headHtml = [...doc.querySelectorAll('link[rel="stylesheet"], style')]
-      .map(node => node.outerHTML)
-      .join("\n");
+    const win = doc.defaultView;
+    if (!win) throw new Error("Iframe window tidak tersedia untuk " + page.file);
 
-    cdoc.open();
-    cdoc.write(`<!DOCTYPE html><html lang="id"><head><meta charset="utf-8">${headHtml}</head><body style="margin:0;padding:0;background:#fff;">${el.outerHTML}</body></html>`);
-    cdoc.close();
+    win.scrollTo(0, 0);
 
-    await waitForCaptureReady(cdoc);
-
-    const capEl = cdoc.querySelector(".page");
-    if (!capEl) throw new Error("Capture .page tidak ditemukan");
-
-    return html2canvas(capEl, {
+    return html2canvas(el, {
       scale: 2,
       useCORS: true,
-      allowTaint: false,
+      allowTaint: true,
       logging: false,
       backgroundColor: "#ffffff",
       width: 794,
       height: 1123,
       scrollX: 0,
-      scrollY: 0
+      scrollY: 0,
+      window: win
     });
   }
 
