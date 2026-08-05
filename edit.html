@@ -764,6 +764,11 @@
       new Promise(r => { img.onload = img.onerror = r; })
     ));
     await wait(500);
+
+    doc.querySelectorAll(".recipient .name, .kepada .company, [data-cfg='penerima.namaLengkap'], [data-cfg='penerima.nama']").forEach((el) => {
+      el.style.letterSpacing = "normal";
+      el.style.wordSpacing = "normal";
+    });
   }
 
   async function capturePageCanvas(page) {

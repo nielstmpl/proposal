@@ -202,10 +202,19 @@
     }
   }
 
+  function displayText(val, path) {
+    const text = val != null ? String(val) : "";
+    if (/\.(nama|namaLengkap)$/.test(path || "") || path === "panitia.ketua.nama" || path === "panitia.ketuaRw.nama") {
+      return text.replace(/ /g, "\u00a0");
+    }
+    return text;
+  }
+
   function apply(cfg) {
     document.querySelectorAll("[data-cfg]").forEach((el) => {
-      const val = getByPath(cfg, el.dataset.cfg);
-      if (val != null) el.textContent = val;
+      const path = el.dataset.cfg;
+      const val = getByPath(cfg, path);
+      if (val != null) el.textContent = displayText(val, path);
     });
 
     document.querySelectorAll("[data-cfg-html]").forEach((el) => {
