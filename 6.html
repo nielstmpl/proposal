@@ -197,51 +197,24 @@
             <th class="col-jumlah">Jumlah (Rp)</th>
           </tr>
         </thead>
-        <tbody>
-          <tr class="section-row"><td colspan="6">A. Kesekretariatan &amp; Publikasi</td></tr>
-          <tr><td class="col-no">1</td><td>Cetak proposal, buku tamu &amp; dokumentasi kegiatan</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">300.000</td><td class="col-jumlah">300.000</td></tr>
-          <tr><td class="col-no">2</td><td>Spanduk, banner &amp; umbul-umbul promosi kegiatan</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">800.000</td><td class="col-jumlah">800.000</td></tr>
-          <tr><td class="col-no">3</td><td>Bendera merah putih &amp; atribut 17-an</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">400.000</td><td class="col-jumlah">400.000</td></tr>
-          <tr><td class="col-no">4</td><td>Backdrop panggung &amp; photobooth</td><td class="col-vol">1</td><td class="col-sat">Unit</td><td class="col-harga">400.000</td><td class="col-jumlah">400.000</td></tr>
-
-          <tr class="section-row"><td colspan="6">B. Jalan Santai Sehat Bersama</td></tr>
-          <tr><td class="col-no">5</td><td>Doorprize jalan santai</td><td class="col-vol">20</td><td class="col-sat">Bh</td><td class="col-harga">50.000</td><td class="col-jumlah">1.000.000</td></tr>
-          <tr><td class="col-no">6</td><td>Snack &amp; minuman peserta jalan santai</td><td class="col-vol">200</td><td class="col-sat">Porsi</td><td class="col-harga">5.000</td><td class="col-jumlah">1.000.000</td></tr>
-          <tr><td class="col-no">7</td><td>Nomor dada, banner start/finish</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">250.000</td><td class="col-jumlah">250.000</td></tr>
-          <tr><td class="col-no">8</td><td>Operasional (petugas, P3K, keamanan)</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">250.000</td><td class="col-jumlah">250.000</td></tr>
-
-          <tr class="section-row"><td colspan="6">C. Lomba Anak 17-an</td></tr>
-          <tr><td class="col-no">9</td><td>Peralatan &amp; perlengkapan lomba</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">1.500.000</td><td class="col-jumlah">1.500.000</td></tr>
-          <tr><td class="col-no">10</td><td>Hadiah, piala &amp; sertifikat pemenang</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">2.000.000</td><td class="col-jumlah">2.000.000</td></tr>
-          <tr><td class="col-no">11</td><td>Snack &amp; minuman peserta lomba</td><td class="col-vol">150</td><td class="col-sat">Porsi</td><td class="col-harga">3.333</td><td class="col-jumlah">500.000</td></tr>
-
-          <tr class="section-row"><td colspan="6">D. Malam Apresiasi Seni (Puncak)</td></tr>
-          <tr><td class="col-no">12</td><td>Sewa panggung, sound system &amp; lighting</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">3.500.000</td><td class="col-jumlah">3.500.000</td></tr>
-          <tr><td class="col-no">13</td><td>Snack, makan &amp; minuman tamu undangan</td><td class="col-vol">300</td><td class="col-sat">Porsi</td><td class="col-harga">5.000</td><td class="col-jumlah">1.500.000</td></tr>
-          <tr><td class="col-no">14</td><td>Dekorasi panggung &amp; lighting malam puncak</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">1.000.000</td><td class="col-jumlah">1.000.000</td></tr>
-          <tr><td class="col-no">15</td><td>Souvenir &amp; plakat apresiasi sponsor</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">450.000</td><td class="col-jumlah">450.000</td></tr>
-
-          <tr class="section-row"><td colspan="6">E. Lain-lain</td></tr>
-          <tr><td class="col-no">16</td><td>Transport &amp; operasional panitia</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">350.000</td><td class="col-jumlah">350.000</td></tr>
-          <tr><td class="col-no">17</td><td>Dana cadangan darurat</td><td class="col-vol">1</td><td class="col-sat">Paket</td><td class="col-harga">300.000</td><td class="col-jumlah">300.000</td></tr>
-        </tbody>
+        <tbody id="anggaran-tbody"></tbody>
         <tfoot>
           <tr>
             <td colspan="5" class="total-label">Total Estimasi Anggaran</td>
-            <td class="total-val">Rp. 15.500.000</td>
+            <td class="total-val" id="anggaran-total">Rp. 9.780.000</td>
           </tr>
         </tfoot>
       </table>
     </div>
 
     <div class="catatan">
-      <strong>Catatan:</strong> Anggaran di atas merupakan estimasi kebutuhan biaya berdasarkan harga pasar setempat dan dapat berubah sesuai kondisi lapangan. Sumber pendanaian berasal dari iuran warga RW 16, swadaya masyarakat, dan partisipasi sponsor/mitra kerja sama. Laporan pertanggungjawaban keuangan akan disampaikan secara transparan kepada seluruh warga dan mitra setelah kegiatan selesai dilaksanakan.
+      <strong>Catatan:</strong> <span id="anggaran-catatan">Anggaran di atas merupakan estimasi kebutuhan biaya berdasarkan harga pasar setempat.</span>
     </div>
 
   </div>
 
 </div>
-<script src="config.js"></script>
+<script src="boot-config.js"></script>
 <script src="apply-config.js"></script>
 </body>
 </html>

@@ -188,25 +188,84 @@
     pointer-events: none;
   }
   body.pdf-busy { overflow: hidden; }
+
+  .variant-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-bottom: 20px;
+  }
+  .variant-bar a {
+    font-size: 0.82rem;
+    font-weight: 700;
+    padding: 8px 14px;
+    border-radius: 999px;
+    text-decoration: none;
+    border: 2px solid #ddd;
+    color: #555;
+    background: #fff;
+  }
+  .variant-bar a.active {
+    border-color: #C8102E;
+    color: #C8102E;
+    background: #fff5f5;
+  }
+  .variant-bar a:hover:not(.active) { border-color: #ccc; }
+
+  .sub-card {
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 14px;
+    margin-bottom: 12px;
+    background: #fafafa;
+  }
+  .sub-card h3 {
+    font-size: 0.78rem;
+    text-transform: uppercase;
+    letter-spacing: 0.05em;
+    color: #888;
+    margin-bottom: 10px;
+  }
+  .total-box {
+    background: #fff5f5;
+    border: 1px solid #f0d0d0;
+    border-radius: 8px;
+    padding: 12px 14px;
+    font-weight: 700;
+    color: #C8102E;
+    margin-bottom: 12px;
+  }
+  input.no-margin { margin-bottom: 0; }
 </style>
 </head>
 <body>
 <div class="wrap">
-  <h1>Pengaturan Proposal</h1>
-  <p class="lead">Ubah data di sini — otomatis terapply ke halaman 1–10. Simpan, lalu buka/refresh halaman proposal.</p>
+  <div class="variant-bar" id="variant-bar"></div>
+  <h1 id="page-title">Pengaturan Proposal</h1>
+  <p class="lead" id="page-lead">Ubah data di sini — otomatis terapply ke halaman 1–10. Simpan, lalu buka/refresh halaman proposal.</p>
 
   <form id="form">
 
-    <div class="card">
-      <h2>Tujuan Proposal &amp; Surat</h2>
-      <label>Nama Perusahaan / Organisasi</label>
-      <input name="sponsor.nama" placeholder="PT Panfila Indosari">
-      <label>Brand / Singkatan (opsional)</label>
-      <input name="sponsor.brand" placeholder="RON88">
-      <label>Tagline (cover, opsional)</label>
-      <input name="sponsor.tagline" placeholder="Produsen AMDK RON88">
-      <label>Jabatan Penerima Surat</label>
-      <input name="surat.penerimaJabatan" placeholder="Pimpinan / Manajemen">
+    <div class="card" id="penerima-card">
+      <h2 id="penerima-card-title">Penerima Proposal</h2>
+      <div id="penerima-fields">
+        <label>Nama Penerima (cover &amp; surat)</label>
+        <input name="penerima.nama" placeholder="Seluruh Warga RW 16">
+        <label>Nama Lengkap (opsional, kosongkan = sama dengan nama)</label>
+        <input name="penerima.namaLengkap" placeholder="">
+        <label>Jabatan Penerima Surat</label>
+        <input name="surat.penerimaJabatan" placeholder="Seluruh Warga">
+      </div>
+      <div id="sponsor-fields" hidden>
+        <label>Nama Perusahaan / Organisasi</label>
+        <input name="sponsor.nama" placeholder="PT Panfila Indosari">
+        <label>Brand / Singkatan (opsional)</label>
+        <input name="sponsor.brand" placeholder="RON88">
+        <label>Tagline (cover, opsional)</label>
+        <input name="sponsor.tagline" placeholder="Produsen AMDK RON88">
+        <label>Jabatan Penerima Surat</label>
+        <input name="surat.penerimaJabatan" placeholder="Pimpinan / Manajemen">
+      </div>
     </div>
 
     <div class="card">
@@ -278,6 +337,48 @@
     </div>
 
     <div class="card">
+      <h2>Susunan Panitia (Hal 8)</h2>
+      <div class="grid2">
+        <div>
+          <label>Pelindung</label>
+          <input name="panitia.pelindung">
+        </div>
+        <div>
+          <label>Penasihat</label>
+          <input name="panitia.penasihat">
+        </div>
+      </div>
+      <div class="grid2">
+        <div>
+          <label>Wakil Ketua</label>
+          <input name="panitia.inti.0.nama">
+        </div>
+        <div>
+          <label>Sekretaris</label>
+          <input name="panitia.inti.1.nama">
+        </div>
+      </div>
+      <label>Bendahara</label>
+      <input name="panitia.inti.2.nama">
+
+      <div class="sub-card" style="margin-top:14px;">
+        <h3>Seksi Kegiatan</h3>
+        <div id="seksi-fields"></div>
+      </div>
+
+      <label>Catatan Panitia</label>
+      <textarea name="panitia.catatan" rows="3"></textarea>
+    </div>
+
+    <div class="card">
+      <h2>Anggaran (Hal 6)</h2>
+      <div class="total-box" id="anggaran-total-display">Total: Rp 9.780.000</div>
+      <label>Catatan Anggaran</label>
+      <textarea name="anggaran.catatan" rows="4"></textarea>
+      <p class="note">Rincian baris anggaran default ada di <code>config-warga.js</code> / <code>config-donatur.js</code>. Total dihitung otomatis dari baris tersebut.</p>
+    </div>
+
+    <div class="card">
       <h2>Meta Kegiatan</h2>
       <div class="grid2">
         <div>
@@ -298,7 +399,7 @@
       <button type="button" class="btn-secondary" id="reset">Reset ke Default</button>
     </div>
 
-    <p class="note">Tip: untuk edit lanjutan (paragraf surat, dll.), edit langsung <code>config.js</code>.</p>
+    <p class="note">Tip: untuk edit paragraf surat &amp; hal 9, edit <code id="config-file-tip">config-warga.js</code>.</p>
   </form>
 
   <div class="card">
@@ -323,7 +424,7 @@
       <a href="6.html" target="_blank">6 Anggaran</a>
       <a href="7.html" target="_blank">7 Timeline</a>
       <a href="8.html" target="_blank">8 Panitia</a>
-      <a href="9.html" target="_blank">9 Sponsor</a>
+      <a href="9.html" target="_blank" data-page="9">9 Info</a>
       <a href="10.html" target="_blank">10 Penutup</a>
     </div>
   </div>
@@ -334,21 +435,24 @@
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
-<script src="config.js"></script>
+<script src="boot-config.js"></script>
+<script src="apply-config.js"></script>
 <script>
-  const STORAGE_KEY = "proposal-config-override";
+  const VARIANT = window.PROPOSAL_VARIANT || "warga";
+  const STORAGE_KEY = window.getProposalStorageKey ? window.getProposalStorageKey() : ("proposal-config-" + VARIANT);
+  const VQ = "?v=" + VARIANT;
 
   const PAGES = [
-    { num: 1,  title: "Cover",              file: "1.html",  pdf: "01-cover.pdf" },
-    { num: 2,  title: "Surat Permohonan",   file: "2.html",  pdf: "02-surat.pdf" },
-    { num: 3,  title: "Kata Pengantar",     file: "3.html",  pdf: "03-pengantar.pdf" },
-    { num: 4,  title: "Tema Kegiatan",      file: "4.html",  pdf: "04-tema.pdf" },
-    { num: 5,  title: "Rangkaian Kegiatan", file: "5.html",  pdf: "05-kegiatan.pdf" },
-    { num: 6,  title: "Rincian Anggaran",   file: "6.html",  pdf: "06-anggaran.pdf" },
-    { num: 7,  title: "Timeline",           file: "7.html",  pdf: "07-timeline.pdf" },
-    { num: 8,  title: "Susunan Panitia",    file: "8.html",  pdf: "08-panitia.pdf" },
-    { num: 9,  title: "Penawaran Sponsor",  file: "9.html",  pdf: "09-sponsor.pdf" },
-    { num: 10, title: "Penutup",            file: "10.html", pdf: "10-penutup.pdf" }
+    { num: 1,  title: "Cover",              file: "1.html" + VQ,  pdf: "01-cover.pdf" },
+    { num: 2,  title: "Surat",              file: "2.html" + VQ,  pdf: "02-surat.pdf" },
+    { num: 3,  title: "Kata Pengantar",     file: "3.html" + VQ,  pdf: "03-pengantar.pdf" },
+    { num: 4,  title: "Tema Kegiatan",      file: "4.html" + VQ,  pdf: "04-tema.pdf" },
+    { num: 5,  title: "Rangkaian Kegiatan", file: "5.html" + VQ,  pdf: "05-kegiatan.pdf" },
+    { num: 6,  title: "Rincian Anggaran",   file: "6.html" + VQ,  pdf: "06-anggaran.pdf" },
+    { num: 7,  title: "Timeline",           file: "7.html" + VQ,  pdf: "07-timeline.pdf" },
+    { num: 8,  title: "Susunan Panitia",    file: "8.html" + VQ,  pdf: "08-panitia.pdf" },
+    { num: 9,  title: "Hal 9",              file: "9.html" + VQ,  pdf: "09-hal9.pdf" },
+    { num: 10, title: "Penutup",            file: "10.html" + VQ, pdf: "10-penutup.pdf" }
   ];
 
   function deepMerge(target, source) {
@@ -380,13 +484,104 @@
     const keys = path.split(".");
     let cur = obj;
     keys.forEach((k, i) => {
-      if (i === keys.length - 1) cur[k] = value;
-      else cur = cur[k] = cur[k] || {};
+      if (i === keys.length - 1) {
+        cur[k] = value;
+      } else {
+        if (cur[k] == null) {
+          cur[k] = /^\d+$/.test(keys[i + 1]) ? [] : {};
+        }
+        cur = cur[k];
+      }
     });
+  }
+
+  function formatRp(n) {
+    return Number(n || 0).toLocaleString("id-ID");
+  }
+
+  function sumAnggaran(items) {
+    return (items || []).reduce((s, row) => s + (row.jumlah || 0), 0);
+  }
+
+  function initVariantUI() {
+    const bar = document.getElementById("variant-bar");
+    bar.innerHTML = `
+      <a href="edit.html?v=sponsor" class="${VARIANT === "sponsor" ? "active" : ""}">Proposal Sponsor</a>
+      <a href="edit.html?v=warga" class="${VARIANT === "warga" ? "active" : ""}">Proposal Warga</a>
+      <a href="edit.html?v=donatur" class="${VARIANT === "donatur" ? "active" : ""}">Proposal Donatur</a>
+      <a href="index.html">← Pilih jenis</a>`;
+
+    const titles = {
+      sponsor: {
+        h1: "Pengaturan Proposal Sponsor",
+        lead: "Untuk permohonan partisipasi sponsorship ke perusahaan — branding, benefit, anggaran Rp 15.500.000.",
+        penerima: "Perusahaan Sponsor",
+        config: "config-sponsor.js",
+        pdf: "proposal-sponsor-hut-ri-81-rw16.pdf",
+        hal9: "Penawaran Sponsorship"
+      },
+      warga: {
+        h1: "Pengaturan Proposal Warga",
+        lead: "Untuk sosialisasi ke warga — iuran, anggaran Rp 9.780.000, susunan panitia.",
+        penerima: "Penerima (Warga RW 16)",
+        config: "config-warga.js",
+        pdf: "proposal-warga-hut-ri-81-rw16.pdf",
+        hal9: "Rencana Iuran"
+      },
+      donatur: {
+        h1: "Pengaturan Proposal Donatur",
+        lead: "Untuk permohonan bantuan donasi — bukan sponsorship.",
+        penerima: "Penerima (Donatur)",
+        config: "config-donatur.js",
+        pdf: "proposal-donatur-hut-ri-81-rw16.pdf",
+        hal9: "Permohonan Donasi"
+      }
+    };
+    const t = titles[VARIANT] || titles.warga;
+    document.getElementById("page-title").textContent = t.h1;
+    document.getElementById("page-lead").textContent = t.lead;
+    document.getElementById("penerima-card-title").textContent = t.penerima;
+    document.getElementById("config-file-tip").textContent = t.config;
+    window.MERGED_PDF_NAME = t.pdf;
+
+    document.getElementById("penerima-fields").hidden = VARIANT === "sponsor";
+    document.getElementById("sponsor-fields").hidden = VARIANT !== "sponsor";
+
+    document.querySelectorAll(".pages a").forEach(a => {
+      const base = a.getAttribute("href").split("?")[0];
+      a.href = base + VQ;
+    });
+  }
+
+  function buildSeksiFields(cfg) {
+    const wrap = document.getElementById("seksi-fields");
+    const seksi = cfg.panitia?.seksi || [];
+    wrap.innerHTML = seksi.map((s, i) => `
+      <div class="sub-card" style="background:#fff;margin-bottom:10px;">
+        <label>Nama Seksi ${i + 1}</label>
+        <input name="panitia.seksi.${i}.title" value="${s.title || ""}" class="no-margin" style="margin-bottom:10px;">
+        <div class="grid2">
+          <div>
+            <label>Koordinator</label>
+            <input name="panitia.seksi.${i}.koordinator" value="${s.koordinator || ""}">
+          </div>
+          <div>
+            <label>Anggota</label>
+            <input name="panitia.seksi.${i}.anggota" value="${s.anggota || ""}">
+          </div>
+        </div>
+      </div>`).join("");
+  }
+
+  function updateTotalDisplay(cfg) {
+    const total = sumAnggaran(cfg.anggaran?.items);
+    document.getElementById("anggaran-total-display").textContent =
+      "Total: Rp " + formatRp(total);
   }
 
   function loadForm() {
     const cfg = getMerged();
+    buildSeksiFields(cfg);
     document.querySelectorAll("[name]").forEach((el) => {
       const val = getByPath(cfg, el.name);
       el.value = val != null ? val : "";
@@ -395,6 +590,7 @@
     document.querySelectorAll("[data-ttd-preview]").forEach(el => {
       updateTtdPreview(el.dataset.ttdPreview);
     });
+    updateTotalDisplay(cfg);
   }
 
   function fileToDataUrl(file) {
@@ -462,21 +658,33 @@
     e.preventDefault();
     const cfg = getMerged();
     document.querySelectorAll("[name]").forEach((el) => {
-      const val = el.name.endsWith(".ttd") ? el.value : el.value.trim();
+      let val = el.name.endsWith(".ttd") ? el.value : el.value.trim();
+      if (el.type === "number") val = Number(val);
       setByPath(cfg, el.name, val);
     });
+    if (!cfg.penerima.namaLengkap) {
+      cfg.penerima.namaLengkap = cfg.penerima.nama;
+    }
+    if (VARIANT === "sponsor" && cfg.sponsor) {
+      cfg.penerima.nama = cfg.sponsor.nama;
+      cfg.penerima.namaLengkap = cfg.sponsor.brand
+        ? `${cfg.sponsor.nama} (${cfg.sponsor.brand})`
+        : cfg.sponsor.nama;
+    }
     localStorage.setItem(STORAGE_KEY, JSON.stringify(cfg));
+    updateTotalDisplay(cfg);
     toast("Tersimpan! Refresh halaman proposal.");
   });
 
   document.getElementById("reset").addEventListener("click", () => {
-    if (confirm("Reset semua ke isi config.js default?")) {
+    if (confirm("Reset semua ke default " + VARIANT + "?")) {
       localStorage.removeItem(STORAGE_KEY);
       loadForm();
       toast("Reset ke default.");
     }
   });
 
+  initVariantUI();
   loadForm();
 
   // ── Unduh PDF ──
@@ -484,7 +692,7 @@
   const statusEl = document.getElementById("status");
   const btnMerge = document.getElementById("btn-merge");
   const btnAll = document.getElementById("btn-all");
-  const MERGED_PDF = "proposal-hut-ri-81-rw16.pdf";
+  const MERGED_PDF = window.MERGED_PDF_NAME || "proposal-hut-ri-81-rw16.pdf";
   let dlBusy = false;
 
   function setDlBusy(v) {
@@ -514,7 +722,7 @@
       };
       frame.addEventListener("load", onLoad, { once: true });
       frame.addEventListener("error", onError, { once: true });
-      frame.src = file + "?t=" + Date.now();
+      frame.src = file + (file.includes("?") ? "&" : "?") + "t=" + Date.now();
     });
   }
 

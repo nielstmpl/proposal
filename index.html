@@ -2,10 +2,80 @@
 <html lang="id">
 <head>
 <meta charset="utf-8">
-<meta http-equiv="refresh" content="0; url=edit.html">
-<title>Proposal HUT RI</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Proposal HUT RI ke-81 RW 16</title>
+<style>
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  body {
+    font-family: system-ui, -apple-system, sans-serif;
+    background: #f5f5f5;
+    color: #111;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 24px 16px;
+  }
+  .wrap { max-width: 720px; width: 100%; }
+  h1 { font-size: 1.6rem; margin-bottom: 6px; }
+  .lead { color: #555; margin-bottom: 28px; line-height: 1.5; }
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 16px;
+  }
+  @media (max-width: 560px) { .grid { grid-template-columns: 1fr; } }
+  a.card {
+    display: block;
+    background: #fff;
+    border: 2px solid #e8e8e8;
+    border-radius: 12px;
+    padding: 24px 20px;
+    text-decoration: none;
+    color: inherit;
+    transition: border-color 0.15s, box-shadow 0.15s;
+  }
+  a.card:hover {
+    border-color: #C8102E;
+    box-shadow: 0 4px 20px rgba(200, 16, 46, 0.12);
+  }
+  a.card .tag {
+    font-size: 0.72rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    color: #C8102E;
+    margin-bottom: 8px;
+  }
+  a.card h2 { font-size: 1.15rem; margin-bottom: 8px; }
+  a.card p { font-size: 0.9rem; color: #555; line-height: 1.45; }
+  .foot { margin-top: 24px; font-size: 0.82rem; color: #888; text-align: center; }
+</style>
 </head>
 <body>
-<p>Mengalihkan ke <a href="edit.html">edit.html</a>…</p>
+<div class="wrap">
+  <h1>Proposal HUT RI ke-81</h1>
+  <p class="lead">RW 16 Desa Mandalasari — pilih jenis proposal yang ingin diedit atau diunduh.</p>
+
+  <div class="grid">
+    <a class="card" href="edit.html?v=sponsor">
+      <div class="tag">Untuk Sponsor</div>
+      <h2>Proposal Sponsorship</h2>
+      <p>Permohonan partisipasi sponsorship ke perusahaan — penawaran branding, benefit, anggaran Rp 15.500.000.</p>
+    </a>
+    <a class="card" href="edit.html?v=warga">
+      <div class="tag">Untuk Warga</div>
+      <h2>Proposal Warga</h2>
+      <p>Pemberitahuan kegiatan, rencana iuran warga, anggaran Rp 9.780.000, susunan panitia.</p>
+    </a>
+    <a class="card" href="edit.html?v=donatur">
+      <div class="tag">Untuk Donatur</div>
+      <h2>Proposal Donatur</h2>
+      <p>Permohonan bantuan donasi (bukan sponsorship), transparansi, dan apresiasi donatur.</p>
+    </a>
+  </div>
+
+  <p class="foot">Panitia PHBN HUT RI ke-81 RW 16 · 2026</p>
+</div>
 </body>
 </html>

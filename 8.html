@@ -204,11 +204,11 @@
       <div class="row-list">
         <div class="row-item">
           <span class="label">Pelindung</span>
-          <span class="val">Kepala Desa Mandalasari</span>
+          <span class="val" id="panitia-pelindung">Kepala Desa Mandalasari</span>
         </div>
         <div class="row-item">
           <span class="label">Penasihat</span>
-          <span class="val">Tokoh Masyarakat &amp; Tokoh Agama RW 16</span>
+          <span class="val" id="panitia-penasihat">Tokoh Masyarakat &amp; Tokoh Agama RW 16</span>
         </div>
         <div class="row-item">
           <span class="label">Penanggung Jawab</span>
@@ -224,65 +224,23 @@
           <span class="label">Ketua Panitia</span>
           <span class="val" data-cfg="panitia.ketua.nama">Panny Aryanto Wibowo</span>
         </div>
-        <div class="row-item">
-          <span class="label">Wakil Ketua</span>
-          <span class="val">Rizky Irwan Ramdas</span>
-        </div>
-        <div class="row-item">
-          <span class="label">Sekretaris</span>
-          <span class="val">Krisna Rama Wijaya</span>
-        </div>
-        <div class="row-item">
-          <span class="label">Bendahara</span>
-          <span class="val">Amanta Ivan</span>
-        </div>
+        <div id="panitia-inti-extra"></div>
       </div>
     </div>
 
     <div style="flex:1;display:flex;flex-direction:column;gap:2.5mm;min-height:0;">
       <div class="sec-bar">Seksi &ndash; Seksi Kegiatan</div>
-      <div class="seksi-grid">
-        <div class="seksi-box">
-          <h3>Seksi Acara &amp; Lomba</h3>
-          <p><strong>Koordinator:</strong> Perwakilan Karang Taruna</p>
-          <p><strong>Anggota:</strong> 5&ndash;7 orang perwakilan tiap RT</p>
-        </div>
-        <div class="seksi-box">
-          <h3>Seksi Perlengkapan</h3>
-          <p><strong>Koordinator:</strong> Perwakilan Warga RW 16</p>
-          <p><strong>Anggota:</strong> 4&ndash;5 orang</p>
-        </div>
-        <div class="seksi-box">
-          <h3>Seksi Konsumsi</h3>
-          <p><strong>Koordinator:</strong> Perwakilan Ibu-Ibu PKK</p>
-          <p><strong>Anggota:</strong> 5&ndash;6 orang</p>
-        </div>
-        <div class="seksi-box">
-          <h3>Seksi Humas &amp; Publikasi</h3>
-          <p><strong>Koordinator:</strong> Perwakilan Warga RW 16</p>
-          <p><strong>Anggota:</strong> 3&ndash;4 orang</p>
-        </div>
-        <div class="seksi-box">
-          <h3>Seksi Dokumentasi</h3>
-          <p><strong>Koordinator:</strong> Perwakilan Karang Taruna</p>
-          <p><strong>Anggota:</strong> 2&ndash;3 orang</p>
-        </div>
-        <div class="seksi-box">
-          <h3>Seksi Keamanan &amp; Kebersihan</h3>
-          <p><strong>Koordinator:</strong> Ketua RT masing-masing</p>
-          <p><strong>Anggota:</strong> Linmas RW 16</p>
-        </div>
-      </div>
+      <div class="seksi-grid" id="panitia-seksi"></div>
     </div>
 
     <div class="catatan">
-      <strong>Catatan:</strong> Daftar nama anggota seksi secara lengkap akan disampaikan dalam Surat Keputusan Kepanitiaan yang ditetapkan oleh Ketua RW 16. Susunan di atas dapat menyesuaikan hasil rapat panitia berikutnya.
+      <strong>Catatan:</strong> <span id="panitia-catatan">Daftar nama anggota seksi secara lengkap akan disampaikan dalam Surat Keputusan Kepanitiaan.</span>
     </div>
 
   </div>
 
 </div>
-<script src="config.js"></script>
+<script src="boot-config.js"></script>
 <script src="apply-config.js"></script>
 </body>
 </html>
