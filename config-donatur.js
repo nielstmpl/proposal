@@ -40,7 +40,6 @@ window.PROPOSAL_CONFIG = {
     pelindung: "Kepala Desa Mandalasari",
     penasihat: "Tokoh Masyarakat & Tokoh Agama RW 16",
     inti: [
-      { label: "Wakil Ketua", nama: "Rizky Irwan Ramdas" },
       { label: "Sekretaris", nama: "Krisna Rama Wijaya" },
       { label: "Bendahara", nama: "Amanta Ivan" }
     ],
